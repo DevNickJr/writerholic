@@ -8,6 +8,11 @@ import { Button } from '@/components/ui/button'
 import LockImg from '@/assets/lock1.svg'
 import { apiLogin } from '@/services/AuthService'
 import { useRouter } from 'next/navigation'
+import Loader from '@/components/Loader'
+import useMutate from '@/hooks/useMutation'
+import { toast } from 'react-toastify'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 const initialState: IUserLogin = {
     email: '',
@@ -20,23 +25,27 @@ const Login = () => {
     }, initialState)
     const router = useRouter()
 
+    const loginMutation = useMutate<IUserLogin, unknown>(
+        apiLogin,
+        {
+          onSuccess: (data: unknown) => {
+              console.log("data", data)
+              toast.success("Logged in Successfully.")
+              return router.push('/admin')
+          },
+          showErrorMessage: true,
+        }
+    )
+    
     const handleLogin = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault()
-        try {
-            const result = await apiLogin(user)
-            const data = result.data
-            return router.push('/admin')
-
-        } catch (error: unknown) {
-            console.log({ error })
-        }
+        loginMutation.mutate(user)
     }
-
+      
   return (
 
     <div>
-        {/* {loading && <Loader modalOpen={true} />} */}
-        {/* <Header /> */}
+        {loginMutation.isPending && <Loader />}
         <div className="flex flex-col items-center justify-center min-h-screen pb-12">
             <section className="w-full section">
                 <div className="flex flex-col w-full gap-4 md:flex-row md:gap-12">
@@ -53,14 +62,16 @@ const Login = () => {
                     </div>
                     <div className="flex-1 flex flex-col p-4 md:p-10 md:bg-[#F2F2F2] rounded-xl shadow-md">
                         <h1 className="mb-3 text-2xl font-bold text-center text-gray-800 md:text-3xl md:text-left font-argentinum">Login</h1>
-                        <form onSubmit={handleLogin} className="flex flex-col gap-4 mt-4">
-                            <div className='flex flex-col gap-1'>
-                                <label htmlFor="email" className="text-xs font-semibold text-gray-500">Username or Email</label>
-                                <input value={user?.email} onChange={(e) => dispatch({ type: "email", payload: e.target.value})} name='email' id='email' type="email" placeholder="Email" className="px-4 py-2 text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder:opacity-35 placeholder:text-xs" />
+                        <form onSubmit={handleLogin} className="flex flex-col gap-5 mt-4">
+                            <div className='flex flex-col gap-2'>
+                                {/* <label htmlFor="email" className="text-xs font-semibold text-gray-500">Username or Email</label> */}
+                                <Label htmlFor="email">Email</Label>
+                                <Input value={user?.email} onChange={(e) => dispatch({ type: "email", payload: e.target.value})} name='email' id='email' type="email" />
                             </div>
-                            <div className='flex flex-col gap-1'>
-                                <label htmlFor="password" className="text-xs font-semibold text-gray-500">Password</label>
-                                <input value={user?.password} onChange={(e) => dispatch({ type: "password", payload: e.target.value})} name='password' id='password' type="password" placeholder="Password" className="px-4 py-2 text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder:opacity-35 placeholder:text-xs" />
+                           
+                            <div className='flex flex-col gap-2'>
+                                <Label htmlFor="password">Password</Label>
+                                <Input value={user?.password} onChange={(e) => dispatch({ type: "password", payload: e.target.value})} name='password' id='password' type="password" />
                             </div>
                             <div className="flex items-center gap-3 mb-2">
                                 <span className='w-4 h-4 bg-white border border-1'></span>
