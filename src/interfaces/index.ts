@@ -22,16 +22,10 @@ export interface IUserRegister {
     access_code: string
 }
 
-export interface ILoginReducerAction {
-    type: "email" | "password";
-    payload: string
-}
-
 export interface SessionPayload {
     userId: string;
     expiresAt: Date;
 }
-
 
 
 ///
@@ -76,14 +70,19 @@ export interface IPassword {
     old_password: string
     new_password: string
     confirm_password: string
-  }
-  
+}
+
+
+// type Action = "reset" | "title" | "author" | "post" | "snippet" | "admin_string" | "file_path"
+
+// interface IAction {
+//     type: Action,
+//     payload: string
+// }
 
 export interface IReducerAction<T> {
-    type: T;
-    payload?: string | { [key: string]: string };
-    data?: string | { [key: string]: string };
-    name?: string;
+    type: keyof T | 'reset';
+    payload: string | number | null;
 }
 
 export interface ILoginReducerAction extends IReducerAction<"email" | "password"> {
@@ -94,3 +93,10 @@ export interface IRegistereducerAction extends IReducerAction<"email" | "passwor
     payload: string
 }
 
+
+export interface IResponseData<T> {    
+    totalItems: number
+    totalPages: number
+    currentPage: number
+    items: T
+}

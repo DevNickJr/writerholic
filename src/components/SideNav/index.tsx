@@ -57,7 +57,7 @@ const SideNav = ({ }) => {
                                 <div className='flex flex-col gap-3'>
                                     {
                                         navSection.navItems?.map((navItem) => (
-                                            <Link key={navItem.id} href={navItem.link} className={`flex items-center gap-3 cursor-pointer rounded-md px-4 py-2.5 whitespace-nowrap ${collapse ? "justify-center" : ""} ${(pathname.includes(navItem.link) && navItem.link !== "/dashboard") ? "bg-secondary text-white font-semibold" : (pathname==="/dashboard" && navItem.link==="/dashboard") ? "bg-secondary text-white font-semibold" : ""}`}>
+                                            <Link key={navItem.id} href={navItem.link} className={`flex items-center gap-3 cursor-pointer rounded-md px-4 py-2.5 whitespace-nowrap ${collapse ? "justify-center" : ""} ${(pathname.includes(navItem.link) && navItem.link !== "/admin") ? "bg-primary text-white font-semibold" : (pathname==="/admin" && navItem.link==="/admin") ? "bg-primary text-white font-semibold" : ""}`}>
                                                 <div>
                                                     <navItem.Icon className={"text-lg"} />
                                                 </div>

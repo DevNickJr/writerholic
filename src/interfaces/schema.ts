@@ -32,8 +32,18 @@ export interface IBlog extends Document {
     isFeatured: boolean;
     likes: number;
     tags: Types.ObjectId[];
-
 }
+
+export interface ITopic {
+    _id?: string;
+    title: string;
+    description: string;
+}
+
+export interface ITag extends Document {
+    title: string;
+}
+
 export interface IComment extends Document {
     title: string;
     content: string;

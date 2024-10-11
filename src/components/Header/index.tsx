@@ -43,7 +43,7 @@ const toggle = () =>{
           </div>
         </button>
 
-        <nav className="fixed z-50 flex items-center px-6 py-3 font-medium capitalize transition-all duration-300 translate-x-1/2 border border-solid rounded-full  w-max sm:px-8 border-dark sm:hidden top-6 right-1/2 bg-light/80 backdrop-blur-sm ease"
+        <nav className="fixed z-50 flex items-center px-6 py-3 font-medium capitalize transition-all duration-300 translate-x-1/2 border border-solid rounded-full w-max sm:px-8 border-dark sm:hidden top-6 right-1/2 bg-light/80 backdrop-blur-sm ease"
         style={{
           top: click ? "1rem" : "-5rem"
          }}
@@ -64,7 +64,7 @@ const toggle = () =>{
         </nav>
 
 
-        <nav className="fixed z-50 items-center hidden px-8 py-3 font-medium capitalize translate-x-1/2 border border-solid rounded-full  w-max border-dark sm:flex top-6 right-1/2 bg-light/80 backdrop-blur-sm">
+        <nav className="fixed z-50 items-center hidden px-8 py-3 font-medium capitalize translate-x-1/2 border border-solid rounded-full w-max border-dark sm:flex top-6 right-1/2 bg-light/80 backdrop-blur-sm">
             <Link href="/" className="mr-2">Home</Link>
             <Link href="/about" className="mx-2">About</Link>
             <Link href="/contact" className="mx-2">Contact</Link>
@@ -78,10 +78,10 @@ const toggle = () =>{
                 }
             </button>
         </nav>
-        <div className="items-center hidden  sm:flex">
+        <div className="items-center hidden sm:flex">
             <a href={siteMetadata.linkedin} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Reach out to me via LinkedIn" target="_blank"><LinkedinIcon className="transition-all duration-200 hover:scale-125 ease" /></a>
             <a href={siteMetadata.twitter} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Reach out to me via Twitter" target="_blank"><TwitterIcon className="transition-all duration-200 hover:scale-125 ease" /></a>
-            <a href={siteMetadata.github} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Check my profile on Github" target="_blank"><GithubIcon className="transition-all duration-200  hover:scale-125 ease dark:fill-light" /></a>
+            <a href={siteMetadata.github} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Check my profile on Github" target="_blank"><GithubIcon className="transition-all duration-200 hover:scale-125 ease dark:fill-light" /></a>
             <a href={siteMetadata.dribbble} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Check my profile on Dribbble" target="_blank"><DribbbleIcon className="transition-all duration-200 hover:scale-125 ease" /></a>
         </div>
     </header>
