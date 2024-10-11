@@ -12,7 +12,7 @@ interface State {
     params?: any
 }
 
-const usePost = <T, K>(api: (data: T, {id, token, params, ...rest}: {
+const useMutate = <T, K>(api: (data: T, {id, token, params, ...rest}: {
     id: string,
     token: string,
     params?: any,
@@ -70,4 +70,4 @@ const usePost = <T, K>(api: (data: T, {id, token, params, ...rest}: {
     })
 }
 
-export default usePost
+export default useMutate

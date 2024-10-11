@@ -1,8 +1,8 @@
 import {QueryKey, useQuery} from '@tanstack/react-query'
 import {AxiosResponse} from 'axios'
 
-interface IProps<T> {
-    api: (a?: unknown) => Promise<AxiosResponse<T, unknown>>
+interface IProps<T,> {
+    api: (a?: any) => Promise<AxiosResponse<T, unknown>>
     param?: unknown
     key: QueryKey
     onSuccess?: (a: unknown) => void
