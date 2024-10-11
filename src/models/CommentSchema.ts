@@ -1,5 +1,4 @@
 import { models, model, Schema, Model } from 'mongoose';
-import bcrypt from 'bcrypt';
 import { IComment } from '@/interfaces/schema';
 import { StatusEnum } from '@/interfaces';
 
@@ -47,12 +46,6 @@ const CommentSchema: Schema<IComment> = new Schema({
 }, {
   timestamps: true
 });
-
-//compare password
-CommentSchema.methods.comparePassword = async function comparePassword(enteredPassword: string) {
-    return await bcrypt.compare(enteredPassword, this.password);
-};
-
 
 const CommentModel: Model<IComment> = models.Comment || model<IComment>('Comment', CommentSchema);
 

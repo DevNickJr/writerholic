@@ -19,6 +19,21 @@ export const verifySession = cache(async (role?: string) => {
   return { isAuth: true, userId: session.userId, role: session.role }
 })
 
+export const apiVerifySession = cache(async (role?: string) => {
+  const cookie = cookies().get('session')?.value
+  const session = await decrypt(cookie)
+ 
+  if (!session?.userId) {
+   throw new Error('You are not authorised to perform this function');
+  }
+
+  if (!!role && role === session.role) {
+   throw new Error('You are not authorised to perform this function');
+  }
+
+  return { isAuth: true, userId: session.userId, role: session.role }
+})
+
 export const getUser = cache(async () => {
     const session = await verifySession()
     if (!session) return null

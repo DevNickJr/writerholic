@@ -1,5 +1,4 @@
 import { models, model, Schema, Model } from 'mongoose';
-import bcrypt from 'bcrypt';
 import { IBlog } from '@/interfaces/schema';
 import { StatusEnum } from '@/interfaces';
 
@@ -51,12 +50,6 @@ const BlogSchema: Schema<IBlog> = new Schema({
 }, {
   timestamps: true
 });
-
-//compare password
-BlogSchema.methods.comparePassword = async function comparePassword(enteredPassword: string) {
-    return await bcrypt.compare(enteredPassword, this.password);
-};
-
 
 const BlogModel: Model<IBlog> = models.Blog || model<IBlog>('Blog', BlogSchema);
 
