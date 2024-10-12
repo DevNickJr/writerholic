@@ -81,8 +81,8 @@ export interface IPassword {
 // }
 
 export interface IReducerAction<T> {
-    type: keyof T | 'reset';
-    payload: string | number | null;
+    type: keyof T | 'reset' | 'setAll';
+    payload: string | number | boolean | T | null;
 }
 
 export interface ILoginReducerAction extends IReducerAction<"email" | "password"> {

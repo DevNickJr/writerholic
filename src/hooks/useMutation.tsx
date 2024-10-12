@@ -21,8 +21,7 @@ const useMutate = <T, K>(api: (data: T, {id, token, params, ...rest}: {
                            onSuccess,
                            onError,
                            showSuccessMessage = false,
-                           showErrorMessage = false,
-                           requireAuth,
+                           showErrorMessage = true,
                            id,
                            params,
                            ...rest

@@ -18,20 +18,21 @@ export interface IUser extends Document {
     comparePassword(enteredPassword: string): Promise<boolean>;
 }
 
-export interface IBlog extends Document {
+export interface IBlog {
+    _id?: string;
     title: string;
     content: string;
     slug: string;
-    author: Types.ObjectId;
+    author: Types.ObjectId | string;
     featuredImage: string;
     excerpt: string;
     status: StatusEnum;
-    readingTime: string;
+    readingTime?: string;
     views: string;
     topic: string;
     isFeatured: boolean;
-    likes: number;
-    tags: Types.ObjectId[];
+    likes?: number;
+    tags?: string[]; 
 }
 
 export interface ITopic {
@@ -40,11 +41,13 @@ export interface ITopic {
     description: string;
 }
 
-export interface ITag extends Document {
+export interface ITag {
+    _id?: string;
     title: string;
 }
 
-export interface IComment extends Document {
+export interface IComment {
+    _id?: string;
     title: string;
     content: string;
     slug: string;
