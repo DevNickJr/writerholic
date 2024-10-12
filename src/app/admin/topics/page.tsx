@@ -9,10 +9,10 @@ import useFetch from '@/hooks/useFetch'
 import { ITopic } from '@/interfaces/schema'
 import useMutate from '@/hooks/useMutation'
 import { toast } from 'react-toastify'
-import { BlogCard } from '@/components/BlogCard'
 import ConfirmDeleteDialog from '@/components/modals/ConfirmDeleteDialog'
 import Loader from '@/components/Loader'
 import EditTopicDialog from './EditTopic.dialog'
+import { TopicCard } from '@/components/cards/TopicCard'
 
 const Topics = () => {
     const [search, setSearch] = useState('')
@@ -20,8 +20,6 @@ const Topics = () => {
 
     const [deleteTopicId, setDeleteTopicId] = useState('')
     const [editTopic, setEditTopic] = useState<ITopic>()
-
-    console.log({ editTopic })
 
     const { data: topics, refetch } = useFetch<ITopic[]>({
         api: apiGetTopics,
@@ -67,10 +65,10 @@ const Topics = () => {
                 <Button>Add a New Topic</Button>
             </AddTopicDialog>
         </div>
-        <div className='mt-6 flex flex-col gap-3'>
+        <div className='mt-6 flex flex-wrap gap-3'>
           {
             topics?.map((el, index) => (
-              <BlogCard
+              <TopicCard
                 key={index}
                 data={el}
                 onDelete={(id) => setDeleteTopicId(id)} 

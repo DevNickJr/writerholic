@@ -10,7 +10,7 @@ import LogoutModal from '../modals/LogoutModal.tsx'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 
 
-const SideNav = ({ }) => {
+const SideNav = () => {
     const [collapse, setCollapse] = useState(false)
     const [logoutModalIsOpen, setLogoutModalOpen] = useState(false)
 
