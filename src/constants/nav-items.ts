@@ -22,8 +22,8 @@ const navItems = [
       },
       {
         id: 2,
-        title: "Posts",
-        link: "/admin/posts",
+        title: "Blogs",
+        link: "/admin/blogs",
         Icon: MdOutlineArticle,
       },
       {
