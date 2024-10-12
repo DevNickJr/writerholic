@@ -21,6 +21,10 @@ const BlogSchema: Schema<IBlog> = new Schema({
         type: String,
         required: true,
     },
+    excerpt: {
+        type: String,
+        required: true,
+    },
     featuredImage: {
         type: String,
         required: true,
