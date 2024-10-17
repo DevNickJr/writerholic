@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcss from "tailwindcss-animate"
 
 const config: Config = {
     darkMode: ["class"],
@@ -32,6 +33,18 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--muted))',
   				foreground: 'hsl(var(--muted-foreground))'
   			},
+  			dark: {
+  				DEFAULT: 'hsl(var(--dark))',
+  				foreground: 'hsl(var(--dark-foreground))'
+  			},
+  			gray: {
+  				DEFAULT: 'hsl(var(--gray))',
+  				foreground: 'hsl(var(--gray-foreground))'
+  			},
+  			light: {
+  				DEFAULT: 'hsl(var(--light))',
+  				foreground: 'hsl(var(--light-foreground))'
+  			},
   			accent: {
   				DEFAULT: 'hsl(var(--accent))',
   				foreground: 'hsl(var(--accent-foreground))'
@@ -58,6 +71,6 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcss],
 };
 export default config;

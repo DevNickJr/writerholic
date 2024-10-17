@@ -3,7 +3,7 @@ import { useReducer, FormEvent } from 'react'
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
-import { ILoginReducerAction, IUserLogin } from '@/interfaces'
+import { IReducerAction, IUserLogin } from '@/interfaces'
 import { Button } from '@/components/ui/button'
 import LockImg from '@/assets/lock1.svg'
 import { apiLogin } from '@/services/AuthService'
@@ -20,7 +20,7 @@ const initialState: IUserLogin = {
 }
 
 const Login = () => {
-    const [user, dispatch] = useReducer((state: IUserLogin, action: ILoginReducerAction) => {
+    const [user, dispatch] = useReducer((state: IUserLogin, action: IReducerAction<IUserLogin>) => {
         return { ...state, [action.type]: action.payload }
     }, initialState)
     const router = useRouter()
@@ -48,14 +48,14 @@ const Login = () => {
         {loginMutation.isPending && <Loader />}
         <div className="flex flex-col items-center justify-center min-h-screen pb-12">
             <section className="w-full section">
-                <div className="flex flex-col w-full gap-4 md:flex-row md:gap-12">
+                <div className="container flex flex-col w-full gap-4 md:flex-row md:gap-12">
                     <div className="flex-col-reverse items-center justify-center flex-1 hidden text-center md:flex md:items-start md:flex-col md:justify-between md:text-left">
                         <div>
                             <p className="md:text-4xl">
                                 <span className="font-bold text-primary">Welcome to </span>
                                 <span className="font-bold text-gray-800 font-argentinum">WriterHolic</span>
                             </p>
-                            <p className='hidden md:block'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam eveniet tempore ab sed enim, iusto vel corrupti, eum cumque aperiam, veniam laudantium voluptate praesentium! Doloremque perferendis saepe perspiciatis ipsam quo! </p>
+                            <p className='hidden md:block'>Sign in to manage your blog posts, engage with your audience, and keep the content flowing.</p>
                         </div>
                         {/* <h1 className="mb-3 text-4xl font-bold text-center text-gray-800 font-argentinum md:hidden">Sign In</h1> */}
                         <Image src={LockImg} alt="" className="w-full h-40 mt-5 md:w-full md:h-96" /> 
