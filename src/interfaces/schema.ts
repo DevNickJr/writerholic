@@ -29,10 +29,12 @@ export interface IBlog {
     status: StatusEnum;
     readingTime?: string;
     views: string;
-    topic: string;
+    topic: string | Types.ObjectId | ITopic;
     isFeatured: boolean;
     likes?: number;
     tags?: string[]; 
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface ITopic {

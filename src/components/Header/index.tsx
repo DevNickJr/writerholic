@@ -16,7 +16,7 @@ const toggle = () =>{
   setClick(!click)
 }
   return (
-    <header className="flex items-center justify-between w-full p-4 px-5 sm:px-10">
+    <header className="container flex items-center justify-between w-full p-4">
         <Logo />
 
         <button className="z-50 inline-block sm:hidden" onClick={toggle} aria-label="Hamburger Menu">
@@ -46,16 +46,11 @@ const toggle = () =>{
         <nav className="fixed z-50 flex items-center px-6 py-3 font-medium capitalize transition-all duration-300 translate-x-1/2 border border-solid rounded-full w-max sm:px-8 border-dark sm:hidden top-6 right-1/2 bg-light/80 backdrop-blur-sm ease"
         style={{
           top: click ? "1rem" : "-5rem"
-         }}
-        
-        >
+        }}>
             <Link href="/" className="mr-2">Home</Link>
             <Link href="/about" className="mx-2">About</Link>
             <Link href="/contact" className="mx-2">Contact</Link>
-            <button onClick={() => setMode(mode === "light" ? "dark" : "light")  }
-            className={cx("w-6 h-6 ease ml-2 flex items-center justify-center rounded-full p-1", mode === "light" ? "bg-dark text-light" :
-            "bg-light text-dark" )}
-            aria-label="theme-switcher"
+            <button onClick={() => setMode(mode === "light" ? "dark" : "light")} className={cx("w-6 h-6 ease ml-2 flex items-center justify-center rounded-full p-1", mode === "light" ? "bg-dark text-light" : "bg-light text-dark" )} aria-label="theme-switcher"
             >
                 {
                   mode === "light" ? <MoonIcon className={"fill-dark"} />  : <SunIcon className={"fill-dark"} />
@@ -64,7 +59,7 @@ const toggle = () =>{
         </nav>
 
 
-        <nav className="fixed z-50 items-center hidden px-8 py-3 font-medium capitalize translate-x-1/2 border border-solid rounded-full w-max border-dark sm:flex top-6 right-1/2 bg-light/80 backdrop-blur-sm">
+        <nav className="fixed z-50 items-center hidden px-8 py-3 font-medium capitalize translate-x-1/2 border border-solid rounded-full w-max border-dark sm:flex top-6 right-1/2 bg-secondary backdrop-blur-sm text-secondary-foreground">
             <Link href="/" className="mr-2">Home</Link>
             <Link href="/about" className="mx-2">About</Link>
             <Link href="/contact" className="mx-2">Contact</Link>

@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { TbLogout2  } from 'react-icons/tb'
 import { navItems } from '@/constants/nav-items'
 import Image from 'next/image'
-import Profile from "@/assets/lock.png"
+import Profile from "@/assets/logo.png"
 import LogoutModal from '../modals/LogoutModal.tsx'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 
@@ -31,7 +31,7 @@ const SideNav = () => {
 
             <div className='h-full overflow-hidden'>
                 <div className={`flex items-center gap-1 ${collapse ? "justify-center mb-6" : "justify-between mb-12"}`}>
-                    <h3 className={`${collapse ? "text-xs hidden" : "text-lg"} font-bold`}>WriterHolic</h3>
+                    {/* <h3 className={`${collapse ? "text-xs hidden" : "text-lg"} font-bold`}>WriterHolic</h3> */}
                     {
                         collapse ? 
                         <MdChevronRight className="text-2xl cursor-pointer" onClick={() => setCollapse(prev => !prev)} />
@@ -40,10 +40,10 @@ const SideNav = () => {
                     }
                 </div>
                 <div className={`flex flex-col items-center gap-3 mb-10`}>
-                    <Image src={Profile} alt={""} className='w-20 h-20 rounded-full cursor-pointer' />
+                    <Image src={Profile} alt={""} className='w-20 cursor-pointer h-14' />
                     <div className="flex flex-col items-center gap-1.5">
-                        <h3 className={`text-xl font-bold`}>John Philip</h3>
-                        <p className='text-xs text-black/70'>Operator</p>
+                        <h3 className={`text-xl font-bold`}>Cindy Student</h3>
+                        <p className='text-xs text-black/70'>Admin Account</p>
                     </div>
                 </div>
                 <div className='h-full overflow-scroll text-sm pb-52 font-inter'>

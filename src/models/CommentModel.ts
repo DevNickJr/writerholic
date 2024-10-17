@@ -1,6 +1,8 @@
 import { models, model, Schema, Model } from 'mongoose';
 import { IComment } from '@/interfaces/schema';
 import { StatusEnum } from '@/interfaces';
+import UserModel from './UserModel';
+import TagModel from './TagModel';
 
 const CommentSchema: Schema<IComment> = new Schema({
     title: {
@@ -14,7 +16,7 @@ const CommentSchema: Schema<IComment> = new Schema({
     },
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'User', //Author
+        ref: UserModel, //Author
         required: true,
     },
     topic: {
@@ -41,7 +43,7 @@ const CommentSchema: Schema<IComment> = new Schema({
     },
     tags: [{
         type: Schema.Types.ObjectId,
-        ref: 'Tag' // Users following this user
+        ref: TagModel // Users following this user
     }],
 }, {
   timestamps: true

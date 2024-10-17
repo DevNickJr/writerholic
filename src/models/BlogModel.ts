@@ -1,6 +1,9 @@
 import { models, model, Schema, Model } from 'mongoose';
 import { IBlog } from '@/interfaces/schema';
 import { StatusEnum } from '@/interfaces';
+import TopicModel from './TopicModel';
+import UserModel from './UserModel';
+import TagModel from './TagModel';
 
 const BlogSchema: Schema<IBlog> = new Schema({
     title: {
@@ -14,11 +17,12 @@ const BlogSchema: Schema<IBlog> = new Schema({
     },
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'User', //Author
+        ref: UserModel, //Author
         required: true,
     },
     topic: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: TopicModel, //Topic
         required: true,
     },
     excerpt: {
@@ -49,7 +53,7 @@ const BlogSchema: Schema<IBlog> = new Schema({
     },
     tags: [{
         type: Schema.Types.ObjectId,
-        ref: 'Tag' // Users following this user
+        ref: TagModel // Users following this user
     }],
 }, {
   timestamps: true
