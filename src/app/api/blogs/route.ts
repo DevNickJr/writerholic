@@ -49,7 +49,7 @@ export async function GET() {
     try {
         await dbConnect();
 
-        const blogs = await Blog.find();
+        const blogs = await Blog.find({}).populate({ path: 'topic author', select: 'title description name profileImage username role ' });
 
         return NextResponse.json(blogs, { status: 200 });
     } catch (error) {

@@ -23,6 +23,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string }})
         if (body.topic && Types.ObjectId.isValid(body.topic)) {
             body.topic = new Types.ObjectId(body.topic);
         }
+        
 
         Object.assign(blog, body)
         const updatedBlog = await blog.save();
@@ -41,7 +42,6 @@ export async function DELETE(req: Request, { params }: { params: { id: string }}
 
         const session = await verifySession()
         const blog = await Blog.findById(id);
-
         if (session.userId !== blog?.author.toString()) {
             return NextResponse.json({ message: 'You are not authorized to perform this action' }, { status: 403 });
         }
@@ -61,7 +61,9 @@ export async function GET(req: Request, { params }: { params: { id: string }}) {
         const id = params.id
         await dbConnect();
 
-        const blog = await Blog.findById(id);
+        const blog = await Blog.findById(id).populate('topic');
+
+        if (!blog) return NextResponse.json({ message: 'Blog does not exist' }, { status: 404 });
 
         return NextResponse.json(blog, { status: 200 });
     } catch (error) {
