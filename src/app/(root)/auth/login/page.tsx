@@ -46,9 +46,9 @@ const Login = () => {
 
     <div>
         {loginMutation.isPending && <Loader />}
-        <div className="flex flex-col items-center justify-center min-h-screen pb-12">
+        <div className="flex flex-col items-center justify-center min-h-screen pb-12 division">
             <section className="w-full section">
-                <div className="container flex flex-col w-full gap-4 md:flex-row md:gap-12">
+                <div className="flex flex-col w-full gap-4 md:flex-row md:gap-12">
                     <div className="flex-col-reverse items-center justify-center flex-1 hidden text-center md:flex md:items-start md:flex-col md:justify-between md:text-left">
                         <div>
                             <p className="md:text-4xl">

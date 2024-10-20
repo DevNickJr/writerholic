@@ -6,7 +6,7 @@ import RecentPosts from "./Home/RecentPosts";
 export default async function Home() {
   const allBlogs: IBlog[] = await (await fetch('http://localhost:3000/api/blogs')).json()
 
-  console.log({ allBlogs: allBlogs[0].author })
+  // console.log({ allBlogs: allBlogs[0].author })
   
   return (
     <main className="flex flex-col items-center justify-center">
