@@ -1,7 +1,5 @@
 const appConfig = {
-    // apiPrefix: "http://localhost/api",
-    apiPrefix: "http://localhost/api",
-    // apiPrefix: "https://eduverse-api.azurewebsites.net/api/",
+    apiPrefix: "http://localhost:3000/api",
 }
 
 
