@@ -4,23 +4,23 @@ import React from 'react'
 import { slug } from 'github-slugger';
 import { IBlog, ITopic } from '@/interfaces/schema';
 import Tag from '@/components/Blog/Tag';
-import DarkBooksImg from '@/assets/dark-books.png';
-import DarkBuildImg from '@/assets/dark-build.png';
-import DarkSeaImg from '@/assets/dark-sea.png';
 import DarkTunImg from '@/assets/dark-tunnel.png';
+// import DarkBooksImg from '@/assets/dark-books.png';
+// import DarkBuildImg from '@/assets/dark-build.png';
+// import DarkSeaImg from '@/assets/dark-sea.png';
 // import DarkWolfImg from '@/assets/dark-wolf.png';
 
 const HomeCoverSection = ({ blog }: { blog: IBlog }) => {
   return (
-    <div className='inline-block w-full'>
-        <article className='flex flex-col items-start justify-end mx-5 sm:mx-10 relative h-[60vh] sm:h-[85vh]'>
+    <div className='inline-block w-full division'>
+        <article className='flex flex-col items-start justify-end relative h-[60vh] sm:h-[85vh]'>
             <div className='absolute top-0 left-0 bottom-0 right-0 h-full bg-gradient-to-b from-transparent from-0% to-black/90 rounded-3xl z-0 ' />
             <Image src={DarkTunImg || blog.featuredImage}
             // placeholder='blur'
             // blurDataURL={blog.}
                 alt={blog.title}
                 fill
-                className='object-cover object-center w-full h-full rounded-3xl -z-10'
+                className='object-cover object-center w-full h-full rounded-3xl'
                 sizes='100vw'
                 priority
             />

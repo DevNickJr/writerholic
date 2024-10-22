@@ -148,7 +148,7 @@ const AddBlog = () => {
                 <Label htmlFor="excerpt" className="">
                     Select Topic
                 </Label>
-                <Select value={data.topic} onValueChange={(value) => dispatch({ type: 'topic', payload: value })}>
+                <Select value={data.topic ? data.topic?.toString() : ''} onValueChange={(value) => dispatch({ type: 'topic', payload: value })}>
                     <SelectTrigger className="">
                         <SelectValue placeholder="" />
                     </SelectTrigger>
