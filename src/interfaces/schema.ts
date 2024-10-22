@@ -23,7 +23,7 @@ export interface IBlog {
     title: string;
     content: string;
     slug: string;
-    author: Types.ObjectId | string;
+    author: Types.ObjectId | string | IUser;
     featuredImage: string;
     excerpt: string;
     status: StatusEnum;
@@ -33,8 +33,8 @@ export interface IBlog {
     isFeatured: boolean;
     likes?: number;
     tags?: string[]; 
-    createdAt: string;
-    updatedAt: string;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 export interface ITopic {
@@ -50,16 +50,6 @@ export interface ITag {
 
 export interface IComment {
     _id?: string;
-    title: string;
+    user?: Types.ObjectId | string | IUser;
     content: string;
-    slug: string;
-    author: Types.ObjectId;
-    featuredImage: string;
-    excerpt: string;
-    status: StatusEnum;
-    readingTime: string;
-    views: string;
-    topic: string;
-    tags: Types.ObjectId[];
-
 }

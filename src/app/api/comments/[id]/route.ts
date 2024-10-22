@@ -1,6 +1,7 @@
+import { RoleEnum } from '@/interfaces';
 import { apiVerifySession } from '@/lib/dal';
 import dbConnect from '@/lib/dbConnection';
-import Blog from '@/models/BlogModel';
+import Comment from '@/models/CommentModel';
 import { Types } from 'mongoose';
 import { NextResponse } from 'next/server';
 
@@ -11,23 +12,23 @@ export async function PATCH(req: Request, { params }: { params: { id: string }})
         const id = params.id
         await dbConnect();
 
-        const session = await apiVerifySession()
-        const blog = await Blog.findById(id);
-        if (session.userId !== blog?.author.toString()) {
+        const session = await apiVerifySession('', false)
+        const comment = await Comment.findById(id);
+
+        if (!comment) return NextResponse.json({ message: 'Comment does not exist' }, { status: 404 });
+
+        if (session.userId.toString() !== comment.user?.toString()) {
             return NextResponse.json({ message: 'You are not authorized to perform this action' }, { status: 403 });
         }
-         // Convert `author` and `topic` to ObjectId if they exist in the update payload
-        if (body.author && Types.ObjectId.isValid(body.author)) {
-            body.author = new Types.ObjectId(body.author);
+         // Convert `user` and `topic` to ObjectId if they exist in the update payload
+        if (body.user && Types.ObjectId.isValid(body.user)) {
+            body.user = new Types.ObjectId(body.user);
         }
-        if (body.topic && Types.ObjectId.isValid(body.topic)) {
-            body.topic = new Types.ObjectId(body.topic);
-        }
-        
 
-        Object.assign(blog, body)
-        const updatedBlog = await blog.save();
-        return NextResponse.json(updatedBlog, { status: 200 });
+        Object.assign(comment, body)
+
+        const updatedComment = await comment.save();
+        return NextResponse.json(updatedComment, { status: 200 });
     } catch (error) {
         console.error({error});
         return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
@@ -41,12 +42,15 @@ export async function DELETE(req: Request, { params }: { params: { id: string }}
         await dbConnect();
 
         const session = await apiVerifySession()
-        const blog = await Blog.findById(id);
-        if (session.userId !== blog?.author.toString()) {
+        const comment = await Comment.findById(id);
+
+        if (!comment) return NextResponse.json({ message: 'Comment does not exist' }, { status: 404 });
+
+        if (session.role !== RoleEnum.admin && session.userId !== comment?.user?.toString()) {
             return NextResponse.json({ message: 'You are not authorized to perform this action' }, { status: 403 });
         }
 
-        const del = await blog.deleteOne();
+        const del = await comment.deleteOne();
 
         return NextResponse.json(del, { status: 200 });
     } catch (error) {
@@ -61,11 +65,11 @@ export async function GET(req: Request, { params }: { params: { id: string }}) {
         const id = params.id
         await dbConnect();
 
-        const blog = await Blog.findById(id).populate('topic author');
+        const comment = await Comment.findById(id).populate('user');
 
-        if (!blog) return NextResponse.json({ message: 'Blog does not exist' }, { status: 404 });
+        if (!comment) return NextResponse.json({ message: 'Comment does not exist' }, { status: 404 });
 
-        return NextResponse.json(blog, { status: 200 });
+        return NextResponse.json(comment, { status: 200 });
     } catch (error) {
         console.error({error});
         return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
