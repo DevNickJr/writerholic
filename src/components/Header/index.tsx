@@ -16,11 +16,12 @@ const toggle = () =>{
   setClick(!click)
 }
   return (
-    <header className="container flex items-center justify-between w-full p-4">
+    <header className="flex items-center justify-between w-full py-4 division">
+    {/* <header className="fixed top-0 z-10 flex items-center justify-between w-full py-4 division bg-black/30"> */}
+    
         <Logo />
-
-        <button className="z-50 inline-block sm:hidden" onClick={toggle} aria-label="Hamburger Menu">
-          <div className="w-6 transition-all duration-300 cursor-pointer ease">
+        <button className="z-50 inline-block -translate-x-1/2 bg-red-200 sm:hidden" onClick={toggle} aria-label="Hamburger Menu">
+          <div className="w-6 transition-all duration-300 bg-red-200 cursor-pointer ease">
             <div className="relative">
             <span className="absolute top-0 inline-block w-full h-0.5 bg-dark dark:bg-light rounded transition-all ease duration-200" 
             style={{
@@ -73,11 +74,11 @@ const toggle = () =>{
                 }
             </button>
         </nav>
-        <div className="items-center hidden sm:flex">
-            <a href={siteMetadata.linkedin} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Reach out to me via LinkedIn" target="_blank"><LinkedinIcon className="transition-all duration-200 hover:scale-125 ease" /></a>
-            <a href={siteMetadata.twitter} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Reach out to me via Twitter" target="_blank"><TwitterIcon className="transition-all duration-200 hover:scale-125 ease" /></a>
-            <a href={siteMetadata.github} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Check my profile on Github" target="_blank"><GithubIcon className="transition-all duration-200 hover:scale-125 ease dark:fill-light" /></a>
-            <a href={siteMetadata.dribbble} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Check my profile on Dribbble" target="_blank"><DribbbleIcon className="transition-all duration-200 hover:scale-125 ease" /></a>
+        <div className="items-center justify-end hidden gap-4 sm:flex">
+            <a href={siteMetadata.linkedin} rel="noopener noreferrer" className="inline-block w-6 h-6" aria-label="Reach out to me via LinkedIn" target="_blank"><LinkedinIcon className="transition-all duration-200 hover:scale-125 ease" /></a>
+            <a href={siteMetadata.twitter} rel="noopener noreferrer" className="inline-block w-6 h-6" aria-label="Reach out to me via Twitter" target="_blank"><TwitterIcon className="transition-all duration-200 hover:scale-125 ease" /></a>
+            <a href={siteMetadata.github} rel="noopener noreferrer" className="inline-block w-6 h-6" aria-label="Check my profile on Github" target="_blank"><GithubIcon className="transition-all duration-200 hover:scale-125 ease dark:fill-light" /></a>
+            <a href={siteMetadata.dribbble} rel="noopener noreferrer" className="inline-block w-6 h-6" aria-label="Check my profile on Dribbble" target="_blank"><DribbbleIcon className="transition-all duration-200 hover:scale-125 ease" /></a>
         </div>
     </header>
   )
