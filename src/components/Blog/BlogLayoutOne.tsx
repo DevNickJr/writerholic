@@ -28,7 +28,7 @@ const BlogLayoutOne = ({ blog }: { blog: IBlog }) => {
         <Tag link={`/tags/${slug((blog.topic as ITopic)?._id || '')}`} name={(blog.topic as ITopic)?.title || ''}
         className="px-6 text-xs  sm:text-sm py-1 sm:py-2 !border "
         />
-        <Link href={blog._id || ''} className="mt-6">
+        <Link href={`/blogs/${blog._id}`} className="mt-6">
           <h2 className="mt-2 text-sm font-bold capitalize xs:text-base sm:text-xl md:text-2xl text-light sm:mt-4">
             <span
               className="text-border-transition-group "

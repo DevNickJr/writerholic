@@ -8,7 +8,7 @@ const BlogLayoutTwo = ({ blog }: { blog: IBlog }) => {
   return (
     <div className="grid items-center grid-cols-12 gap-4 group text-dark dark:text-light">
       <Link
-        href={blog._id || ''}
+        href={`/blogs/${blog._id}`}
         className="h-full col-span-12 overflow-hidden lg:col-span-4 rounded-xl"
       >
         <Image
@@ -27,7 +27,7 @@ const BlogLayoutTwo = ({ blog }: { blog: IBlog }) => {
         <span className="inline-block w-full text-xs font-semibold uppercase text-primary sm:text-sm">
           {(blog.topic as ITopic)?.title || ''}
         </span>
-        <Link href={blog._id || ''} className="inline-block my-1">
+        <Link href={`/blogs/${blog._id}`} className="inline-block my-1">
           <h2 className="text-base font-bold capitalize sm:text-lg">
             <span
               className="font-bold text-border-transition-group"
@@ -37,7 +37,7 @@ const BlogLayoutTwo = ({ blog }: { blog: IBlog }) => {
           </h2>
         </Link>
         <span className="inline-block w-full text-xs font-semibold capitalize text-gray dark:text-light/50 sm:text-base">
-          {format(new Date(blog.createdAt), "MMMM dd, yyyy")}
+          {format(new Date(blog.createdAt ?? ''), "MMMM dd, yyyy")}
         </span>
       </div>
     </div>

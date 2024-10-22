@@ -7,7 +7,7 @@ import React from "react";
 const BlogLayoutThree = ({ blog }: { blog: IBlog }) => {
   return (
     <div className="flex flex-col items-center group text-dark dark:text-light">
-      <Link href={blog._id || ''} className="w-full h-full overflow-hidden rounded-xl">
+      <Link href={`/blogs/${blog._id}`} className="w-full h-full overflow-hidden rounded-xl">
         <Image
           src={blog.featuredImage}
           // placeholder="blur"
@@ -24,7 +24,7 @@ const BlogLayoutThree = ({ blog }: { blog: IBlog }) => {
         <span className="text-xs font-semibold uppercase text-primary dark:text-primary sm:text-sm">
           {(blog.topic as ITopic)?.title || ''}
         </span>
-        <Link href={blog._id || ''} className="inline-block my-1">
+        <Link href={`/blogs/${blog._id}`} className="inline-block my-1">
           <h2 className="text-base font-semibold capitalize sm:text-lg">
             <span
               className="font-bold text-border-transition-group"
@@ -35,7 +35,7 @@ const BlogLayoutThree = ({ blog }: { blog: IBlog }) => {
         </Link>
 
         <span className="text-sm font-semibold capitalize text-gray dark:text-light/50 sm:text-base">
-          {format(new Date(blog.createdAt), "MMMM dd, yyyy")}
+          {format(new Date(blog.createdAt ?? ''), "MMMM dd, yyyy")}
         </span>
       </div>
     </div>
