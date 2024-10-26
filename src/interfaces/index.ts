@@ -80,13 +80,11 @@ export interface IPassword {
     confirm_password: string
 }
 
-
-// type Action = "reset" | "title" | "author" | "post" | "snippet" | "admin_string" | "file_path"
-
-// interface IAction {
-//     type: Action,
-//     payload: string
-// }
+export interface IFeedback {
+    email: string;
+    name: string;
+    message: string;
+}
 
 export interface IReducerAction<T> {
     type: keyof T | 'reset' | 'setAll';

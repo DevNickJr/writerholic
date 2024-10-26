@@ -72,17 +72,31 @@ body {
 }
 
 @layer base {
+  /* * {
+    box-sizing: border-box;
+    max-width: 100vw;
+  } */
+  
+  /* html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  } */
+
   * {
-    @apply border-border;
+    @apply border-border max-w-[100vw];
   }
   html, body {
-    @apply bg-background text-foreground w-[100vw];
+    @apply bg-background text-foreground w-[100vw] max-w-[100vw];
   }
 
   *, html, body {
     scroll-behavior: smooth;
   }
-
+  
+  body {
+    width: 100%;
+  }
+  
   /* Default styles for headings and paragraphs */
 
   h1 {
