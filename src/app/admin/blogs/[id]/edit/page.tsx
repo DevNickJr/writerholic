@@ -185,7 +185,7 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
                 <Label htmlFor="topic" className="">
                     Select Topic
                 </Label>
-                <Select value={data.topic} onValueChange={(value) => value && dispatch({ type: 'topic', payload: value })}>
+                <Select value={data.topic as string} onValueChange={(value) => value && dispatch({ type: 'topic', payload: value })}>
                     <SelectTrigger className="">
                         <SelectValue placeholder="" />
                     </SelectTrigger>

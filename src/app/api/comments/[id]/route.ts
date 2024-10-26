@@ -12,7 +12,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string }})
         const id = params.id
         await dbConnect();
 
-        const session = await apiVerifySession(RoleEnum.admin, false)
+        await apiVerifySession(RoleEnum.admin, false)
         const comment = await Comment.findById(id);
 
         if (!comment) return NextResponse.json({ message: 'Comment does not exist' }, { status: 404 });

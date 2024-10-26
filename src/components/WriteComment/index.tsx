@@ -3,7 +3,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { IReducerAction, IUserObj } from '@/interfaces'
 import React, { FormEvent, useEffect, useReducer } from 'react'
-import { IComment, IUser } from '@/interfaces/schema';
+import { IComment } from '@/interfaces/schema';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import useMutate from '@/hooks/useMutation';
