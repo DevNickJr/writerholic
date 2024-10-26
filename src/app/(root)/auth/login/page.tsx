@@ -64,7 +64,6 @@ const Login = () => {
                         <h1 className="mb-3 text-2xl font-bold text-center text-gray-800 md:text-3xl md:text-left font-argentinum">Login</h1>
                         <form onSubmit={handleLogin} className="flex flex-col gap-5 mt-4">
                             <div className='flex flex-col gap-2'>
-                                {/* <label htmlFor="email" className="text-xs font-semibold text-gray-500">Username or Email</label> */}
                                 <Label htmlFor="email">Email</Label>
                                 <Input value={user?.email} onChange={(e) => dispatch({ type: "email", payload: e.target.value})} name='email' id='email' type="email" />
                             </div>

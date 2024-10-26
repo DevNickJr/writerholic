@@ -6,7 +6,7 @@ import BlogLayoutThree from "@/components/Blog/BlogLayoutThree";
 const RecentPosts = ({ blogs }: { blogs: IBlog[] }) => {
 
   return (
-    <section className="flex flex-col items-center justify-center w-full mt-16 sm:mt-24 md:mt-32 division">
+    <section className="flex flex-col items-center justify-center w-full division section-bottom">
       <div className="flex justify-between w-full">
         <h2 className="inline-block text-2xl font-bold capitalize w-fit md:text-4xl text-dark dark:text-light">
           Recent Posts

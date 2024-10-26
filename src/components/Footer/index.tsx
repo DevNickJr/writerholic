@@ -6,7 +6,7 @@ import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from 'react-icons/bs'
 
 const Footer = () => {
   return (
-    <footer className='relative mt-10 text-white border-none section grad-to-right dark:grad-to-right-dark division'>
+    <footer className='relative text-white border-none section grad-to-right dark:grad-to-right-dark division'>
         <div className="flex flex-col gap-8 md:flex-row">
         {/* Left Section - Logo and About */}
         <div className="flex flex-col flex-1 gap-3">

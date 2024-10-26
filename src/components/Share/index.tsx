@@ -1,13 +1,20 @@
 'use client'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { FaFacebookF, FaTwitter } from 'react-icons/fa'
 import { MdContentCopy } from 'react-icons/md'
 import { AiOutlineWhatsApp, AiOutlineLinkedin } from 'react-icons/ai'
 import useCopyToClipboard from '@/hooks/useCopy'
+import { toast } from 'react-toastify'
 
 const Share = () => {
     const { copy, message } = useCopyToClipboard()
     const location = useRef(() => window?.location?.href)
+
+    useEffect(() => {
+        if (message) {
+            toast.info(message)
+        }
+    }, [message])
 
 
     // useEffect(() => {

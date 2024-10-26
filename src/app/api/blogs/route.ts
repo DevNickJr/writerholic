@@ -16,6 +16,7 @@ export async function POST(req: Request) {
         await dbConnect();
 
         const session = await apiVerifySession(RoleEnum.admin)
+        // const session = await apiVerifySession(RoleEnum.admin)
 
         const requiredFields = ['title', 'content', 'excerpt', 'topic', 'featuredImage'];
 

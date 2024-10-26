@@ -61,5 +61,4 @@ const BlogSchema: Schema<IBlog> = new Schema({
 
 const BlogModel: Model<IBlog> = models.Blog || model<IBlog>('Blog', BlogSchema);
 
-
 export default BlogModel

@@ -51,5 +51,12 @@ export interface ITag {
 export interface IComment {
     _id?: string;
     user?: Types.ObjectId | string | IUser;
+    blog?: Types.ObjectId | string | IBlog;
+    name?: string
+    email?: string
+    website?: string
     content: string;
+    approved?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
 }

@@ -163,22 +163,16 @@ body {
 }
 
 @layer utilities {
-  .top-section {
-    margin-top: 65px/* 64px */;
-    padding-top: 2rem/* 32px */;
-    padding-bottom: 2rem/* 32px */;
-  }
-
-  @media screen and (min-width: 768px) {
-    .top-section {
-      margin-top: 89px;
-      padding-top: 3rem/* 48px */;
-      padding-bottom: 3rem/* 48px */;
-    }
-  }
-
   .section {
-    @apply py-12 lg:py-20 md:py-20;
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .section-top {
+    @apply pt-12 md:pt-16 lg:pt-20;
+  }
+
+  .section-bottom {
+    @apply pb-12 md:pb-16 lg:pb-20;
   }
 
   .division {

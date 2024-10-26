@@ -12,17 +12,14 @@ export async function PATCH(req: Request, { params }: { params: { id: string }})
         const id = params.id
         await dbConnect();
 
-        const session = await apiVerifySession('', false)
+        const session = await apiVerifySession(RoleEnum.admin, false)
         const comment = await Comment.findById(id);
 
         if (!comment) return NextResponse.json({ message: 'Comment does not exist' }, { status: 404 });
 
-        if (session.userId.toString() !== comment.user?.toString()) {
-            return NextResponse.json({ message: 'You are not authorized to perform this action' }, { status: 403 });
-        }
          // Convert `user` and `topic` to ObjectId if they exist in the update payload
-        if (body.user && Types.ObjectId.isValid(body.user)) {
-            body.user = new Types.ObjectId(body.user);
+        if (body.blog && Types.ObjectId.isValid(body.blog)) {
+            body.blog = new Types.ObjectId(body.blog);
         }
 
         Object.assign(comment, body)
@@ -41,12 +38,13 @@ export async function DELETE(req: Request, { params }: { params: { id: string }}
         const id = params.id
         await dbConnect();
 
-        const session = await apiVerifySession()
+        const session = await apiVerifySession(RoleEnum.admin, false)
+
         const comment = await Comment.findById(id);
 
         if (!comment) return NextResponse.json({ message: 'Comment does not exist' }, { status: 404 });
 
-        if (session.role !== RoleEnum.admin && session.userId !== comment?.user?.toString()) {
+        if (session.role !== RoleEnum.admin) {
             return NextResponse.json({ message: 'You are not authorized to perform this action' }, { status: 403 });
         }
 
@@ -65,7 +63,7 @@ export async function GET(req: Request, { params }: { params: { id: string }}) {
         const id = params.id
         await dbConnect();
 
-        const comment = await Comment.findById(id).populate('user');
+        const comment = await Comment.findById(id).populate({ path: 'blog', select: 'title' });
 
         if (!comment) return NextResponse.json({ message: 'Comment does not exist' }, { status: 404 });
 
