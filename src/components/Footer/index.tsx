@@ -11,8 +11,7 @@ const Footer = () => {
         {/* Left Section - Logo and About */}
         <div className="flex flex-col flex-1 gap-3">
             <div className="flex items-center gap-2">
-            <Image src={LOGO} alt="Dordorian Logo" className="w-12 h-12 scale-75" width={200} height={200} />
-            <h2 className='text-2xl font-bold'>Writerholic</h2>
+            <Image src={LOGO} alt="Dordorian Logo" className="w-20 h-12 scale-75" width={200} height={200} />
             </div>
             <p className='text-base'>
             Where words come to life. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi neque corrupti ullam. Quibusdam harum rerum ratione eaque ex provident sint excepturi incidunt doloribus.

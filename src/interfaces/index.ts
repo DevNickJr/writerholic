@@ -71,13 +71,22 @@ export interface IProfile {
     level: string      
     matric_no: string
     option: string 
-  }
+}
 
+export interface IPage {
+    pageSize: number;
+    pageIndex: number;
+}
 
 export interface IPassword {
     old_password: string
     new_password: string
     confirm_password: string
+}
+
+export interface IPaginate {
+    page: string
+    limit: string
 }
 
 export interface IFeedback {
