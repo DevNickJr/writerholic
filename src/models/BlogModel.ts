@@ -33,6 +33,13 @@ const BlogSchema: Schema<IBlog> = new Schema({
         type: String,
         required: true,
     },
+    isFeatured: {
+        type: Boolean,
+        default: false
+    },
+    featuredAt: {
+        type: Date,
+    },
     slug: {
         type: String,
     },
@@ -54,7 +61,7 @@ const BlogSchema: Schema<IBlog> = new Schema({
     tags: [{
         type: Schema.Types.ObjectId,
         ref: TagModel // Users following this user
-    }],
+    }]
 }, {
   timestamps: true
 });

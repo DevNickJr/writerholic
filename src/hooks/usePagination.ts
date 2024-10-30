@@ -1,31 +1,67 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
+import useCreateQueryString from "./useCreateQueryString";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { IPage } from "@/interfaces";
 
-// interface IPaginate {
-//   limit: number,
-//   onPaginationChange:  Dispatch<SetStateAction<{
-//     pageSize: number;
-//     pageIndex: number;
-//   }>>,
-//   pagination: {
-//     pageSize: number;
-//     pageIndex: number;
-//   },
-//   // skip: pageSize * pageIndex,
-//   page: number,
-// }
+interface IPaginate {
+  limit: number,
+  onPaginationChange:  Dispatch<SetStateAction<IPage>>,
+  setPagination:  Dispatch<SetStateAction<IPage>>,
+  pagination: {
+    pageSize: number;
+    pageIndex: number;
+  },
+  // skip: pageSize * pageIndex,
+  page: number;
+  reset:  () => void;
+  next:  () => void;
+  prev:  () => void;
+}
 
-export function usePagination() {
-    const [pagination, setPagination] = useState({
-      pageSize: 10,
-      pageIndex: 0,
-    });
+
+const initalState: IPage = {
+  pageSize: 20,
+  pageIndex: 0,
+}
+
+export function usePagination(): IPaginate {
+    const { createQueryString } = useCreateQueryString()
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+    const page = searchParams.get('page')
+    const limit = searchParams.get('limit')
+    const [pagination, setPagination] = useState({ pageSize: Number(limit || initalState.pageSize), pageIndex: Number(page || 1) - 1 });
     const { pageSize, pageIndex } = pagination;
+    const reset = useCallback(() => router.push(pathname + '?' + createQueryString([
+        { name: 'page', value: '1' },
+        { name: 'limit', value: pagination.pageSize.toString() },
+      ])),
+      [createQueryString, pathname, router, pagination.pageSize]
+      // setPagination({ pageIndex: initalState.pageIndex, pageSize: pagination.pageSize }), [pagination.pageSize]
+    )
+
+    useEffect(() => {
+      if (page && Number(page) !== pagination.pageIndex + 1) {
+        setPagination({ pageSize: Number(limit || initalState.pageSize), pageIndex: Number(page || 1) - 1 })
+      }
+      if (limit && Number(limit) !== pagination.pageSize) {
+        setPagination({ pageSize: Number(limit || initalState.pageSize), pageIndex: Number(page || 1) - 1 })
+      }
+    }, [page, limit])
+
+    useEffect(() => {
+      router.push(pathname)
+    }, [router, pathname])
   
     return {
       limit: pageSize,
       onPaginationChange: setPagination,
       pagination,
-      // skip: pageSize * pageIndex,
+      setPagination,
+      next: () => setPagination(prev => ({ ...prev, pageIndex: prev.pageIndex+1 })),
+      prev: () => setPagination(prev => ({ ...prev, pageIndex: prev.pageIndex-1 })),
       page: pageIndex + 1,
+      reset,
     };
   }

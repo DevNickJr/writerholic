@@ -30,11 +30,12 @@ export interface IBlog {
     readingTime?: string;
     views: string;
     topic: string | Types.ObjectId | ITopic;
-    isFeatured: boolean;
     likes?: number;
     tags?: string[]; 
     createdAt?: string;
     updatedAt?: string;
+    isFeatured: boolean;
+    featuredAt?: Date;
 }
 
 export interface ITopic {
@@ -59,4 +60,14 @@ export interface IComment {
     approved?: boolean;
     createdAt?: string;
     updatedAt?: string;
+}
+
+export interface IPaginatedResult<T> {
+    hasNextPage: number;
+    hasPrevPage: number;
+    page: number;
+    limit: number;
+    total: number;
+    pages: number;
+    data: T[]
 }

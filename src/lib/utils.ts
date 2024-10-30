@@ -14,3 +14,20 @@ export const validateRequiredFields = (fields: string[], body: Record<string, un
   }
   return null;
 };
+
+
+export const resolveSearchQuery = ({
+  search,
+  type = 'DEFAULT',
+}: {
+  search: string;
+  type?: 'DEFAULT' | 'FULL' | 'PARTIAL';
+}) => {
+  if (type === 'DEFAULT') {
+    return new RegExp(search, 'i');
+  } else if (type === 'FULL') {
+    return new RegExp(search, 'i');
+  } else {
+    return { $regex: `^${search}` };
+  }
+};

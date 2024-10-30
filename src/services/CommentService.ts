@@ -16,8 +16,8 @@ export const apiGetComment = ({ id }: { id: string }) => {
     return BaseService.get(`${servicePrefix}/${id}`)
 }
 
-export const apiUpdateComment = (data: Partial<IComment>, { id }: { id: string }) => {
-    return BaseService.patch(`${servicePrefix}/${id}`, data)
+export const apiUpdateComment = (data: Partial<IComment>) => {
+    return BaseService.patch(`${servicePrefix}/${data.id}`, data)
 }
 
 export const apiDeleteComment = (id: string) => {
