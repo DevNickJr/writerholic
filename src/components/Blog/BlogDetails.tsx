@@ -20,7 +20,7 @@ const BlogDetails = ({ blog, slug: blogSlug }: IProps) => {
         <ViewCounter slug={blogSlug} />
       </span>
       <div className="m-3">{blog.readingTime}</div>
-      <Link href={`/topics/${slug((blog.topic as ITopic)?._id || '')}`} className="m-3">
+      <Link href={`/blogs?search=${slug((blog.topic as ITopic)?._id || '')}`} className="m-3">
         #{(blog.topic as ITopic)?._id || ''}
       </Link>
     </div>

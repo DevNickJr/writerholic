@@ -16,8 +16,8 @@ const HomeCoverSection = ({ blog }: { blog: IBlog }) => {
         <article className='flex flex-col items-start justify-end relative h-[60vh] sm:h-[85vh]'>
             <div className='absolute top-0 left-0 bottom-0 right-0 h-full bg-gradient-to-b from-transparent from-0% to-black/90 rounded-3xl z-0 ' />
             <Image src={DarkTunImg || blog.featuredImage}
-            // placeholder='blur'
-            // blurDataURL={blog.}
+                // placeholder='blur'
+                // blurDataURL={blog.}
                 alt={blog.title}
                 fill
                 className='object-cover object-center w-full h-full rounded-3xl'
@@ -26,9 +26,8 @@ const HomeCoverSection = ({ blog }: { blog: IBlog }) => {
             />
 
             <div className='z-0 flex flex-col items-start justify-center w-full p-6 text-white lg:w-3/4 sm:p-8 md:p-12 lg:p-16 text-light'>
-                <Tag link={`/categories/${slug((blog.topic as ITopic)?._id || '')}`} name={'Explore'} />
-                {/* <Tag link={`/categories/${slug((blog.topic as ITopic)?._id || '')}`} name={(blog.topic as ITopic)?.title} /> */}
-                <Link href={blog._id || ''} className='mt-6'>
+                <Tag link={`/blogs`} name={'Explore'} />
+                <Link href={'/blogs'} className='mt-6'>
                     <h1 className='text-lg font-bold capitalize sm:text-xl md:text-3xl lg:text-4xl'>
                         <span className='text-border-transition'>
                             Welcome to Writerholic: A Journey Through Words

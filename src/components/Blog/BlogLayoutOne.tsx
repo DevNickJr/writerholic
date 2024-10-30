@@ -7,7 +7,7 @@ import Tag from "./Tag";
 
 const BlogLayoutOne = ({ blog }: { blog: IBlog }) => {
   return (
-    <div className="relative inline-block overflow-hidden group rounded-xl">
+    <div className="relative inline-block overflow-hidden group rounded-xl max-h-[28rem]">
       <div
         className="absolute top-0 left-0 bottom-0 right-0 h-full bg-gradient-to-b from-transparent from-0% to-black/50 rounded-xl z-10"
       />
@@ -25,7 +25,7 @@ const BlogLayoutOne = ({ blog }: { blog: IBlog }) => {
       />
 
       <div className="absolute bottom-0 z-20 w-full p-4 xs:p-6 sm:p-10">
-        <Tag link={`/tags/${slug((blog.topic as ITopic)?._id || '')}`} name={(blog.topic as ITopic)?.title || ''}
+        <Tag link={`/blogs?search=${slug((blog.topic as ITopic)?._id || '')}`} name={(blog.topic as ITopic)?.title || ''}
         className="px-6 text-xs  sm:text-sm py-1 sm:py-2 !border "
         />
         <Link href={`/blogs/${blog._id}`} className="mt-6">

@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { usePagination } from '@/hooks/usePagination'
 import useFetch from '@/hooks/useFetch'
-import { IBlog } from '@/interfaces/schema'
+import { IBlog, IPaginatedResult } from '@/interfaces/schema'
 import useMutate from '@/hooks/useMutation'
 import { toast } from 'react-toastify'
 import ConfirmDeleteDialog from '@/components/modals/ConfirmDeleteDialog'
@@ -20,10 +20,10 @@ const Blogs = () => {
     const [deleteBlogId, setDeleteBlogId] = useState('')
     const [, setEditBlog] = useState<IBlog>()
 
-    const { data: blogs, refetch } = useFetch<IBlog[]>({
+    const { data: blogs, refetch, isLoading } = useFetch<IPaginatedResult<IBlog>>({
         api: apiGetBlogs,
         param: {
-            pagination: { page, limit },
+           page, limit,
         },
         key: ["Blogs", page, limit],
         requireAuth: true
@@ -42,9 +42,10 @@ const Blogs = () => {
         id: deleteBlogId,
     })
 
+
   return (
     <div>
-			  {deleteBlogMutation.isPending && <Loader />}
+			  {(deleteBlogMutation.isPending || isLoading) && <Loader />}
         <ConfirmDeleteDialog
           open={!!deleteBlogId}
           close={() => setDeleteBlogId('')}
@@ -59,7 +60,7 @@ const Blogs = () => {
         </div>
         <div className='flex flex-wrap gap-3 mt-6'>
           {
-            blogs?.map((el, index) => (
+            blogs?.data?.map((el, index) => (
               <BlogCard
                 key={index}
                 data={el}

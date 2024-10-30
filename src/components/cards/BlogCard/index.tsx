@@ -25,9 +25,14 @@ export function BlogCard({ data, onDelete, onEdit }: IProps) {
         <CardDescription>{data.excerpt}</CardDescription>
       </CardHeader>
       <CardFooter className="flex justify-between">
-        <Link href={`/admin/blogs/${data._id}/edit`}>
-          <Button variant="outline"  onClick={() => onEdit(data)}>Edit</Button>
-        </Link>
+        <div className="flex items-center gap-1.5">
+          <Link href={`/admin/blogs/${data._id}`}>
+            <Button variant="outline">Manage</Button>
+          </Link>
+          <Link href={`/admin/blogs/${data._id}/edit`}>
+            <Button variant="outline"  onClick={() => onEdit(data)}>Edit</Button>
+          </Link>
+        </div>
         <Button onClick={() => onDelete(data._id!)}>Delete</Button>
       </CardFooter>
     </Card>

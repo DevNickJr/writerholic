@@ -1,31 +1,34 @@
-// import { sortBlogs } from "@/src/utils";
 import BlogLayoutOne from "@/components/Blog/BlogLayoutOne";
 import BlogLayoutTwo from "@/components/Blog/BlogLayoutTwo";
+import appConfig from "@/configs";
 import { IBlog } from "@/interfaces/schema";
 import React from "react";
 
-const FeaturedPosts = ({ blogs }: { blogs: IBlog[] }) => {
-  // const sortedBlogs = sortBlogs(blogs);
-  // console.log({ blogs: blogs.length })
-  return <section className="flex flex-col items-center justify-center w-full division section">
+
+const FeaturedPosts = async () => {
+  const featuredBlogs: IBlog[] = await (await fetch(`${appConfig.apiPrefix}/blogs/featured`, { cache: 'no-cache' })).json()
+  // const sortedBlogs = sortBlogs(featuredBlogs);
+  // console.log({ featuredBlogs: featuredBlogs.length })
+  if (!featuredBlogs || !featuredBlogs.length) return null
+  return <section className="flex flex-col items-center justify-center w-full division section-top">
     <h2 className="inline-block w-full text-2xl font-bold capitalize md:text-4xl text-dark dark:text-light">Featured Posts</h2>
     <div className="grid grid-cols-2 grid-rows-2 gap-6 mt-6 sm:mt-10">
       {
-        blogs[0] && 
+        featuredBlogs[0] && 
         <article className="relative col-span-2 row-span-2 md:col-span-1">
-          <BlogLayoutOne blog={blogs[0]} />
+          <BlogLayoutOne blog={featuredBlogs[0]} />
         </article>
       }
       {
-        blogs[1] && 
+        featuredBlogs[1] && 
         <article className="relative col-span-2 row-span-1 md:col-span-1">
-          <BlogLayoutTwo blog={blogs[1]} />
+          <BlogLayoutTwo blog={featuredBlogs[1]} />
         </article>
       }
       {
-        blogs[2] && 
+        featuredBlogs[2] && 
         <article className="relative col-span-2 row-span-1 md:col-span-1">
-          <BlogLayoutTwo blog={blogs[2]} />
+          <BlogLayoutTwo blog={featuredBlogs[2]} />
         </article>
       }
     </div>
