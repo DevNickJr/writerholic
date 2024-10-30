@@ -1,11 +1,11 @@
 import { RoleEnum } from '@/interfaces';
 import { apiVerifySession } from '@/lib/dal';
 import dbConnect from '@/lib/dbConnection';
-import { validateRequiredFields } from '@/lib/utils';
+import { resolveSearchQuery, validateRequiredFields } from '@/lib/utils';
 import Blog from '@/models/BlogModel';
 import User from '@/models/UserModel';
 import { Types } from 'mongoose';
-import { NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 
 // ----------------------------------------------------------------------
 
@@ -45,14 +45,37 @@ export async function POST(req: Request) {
 }
 
 
-export async function GET() {
-
+export async function GET(request: NextRequest) {
+    const searchParams = request.nextUrl.searchParams
+    const search = searchParams.get('search')
+    const page = Number(searchParams.get('page') || 1)
+    const limit = Number(searchParams.get('limit') || 20) 
     try {
         await dbConnect();
+        const total = await Blog.countDocuments()
+        const blogs = await Blog.find({
+            ...(search && {
+                $or: [
+                  { title: resolveSearchQuery({ search }) },
+                  { topic: resolveSearchQuery({ search }) },
+                ],
+              }),
+        }, null, {
+            skip: (page-1)*limit,
+            limit,
+            populate: { path: 'topic author', select: 'title description name profileImage username role' }
+        });
 
-        const blogs = await Blog.find({}).populate({ path: 'topic author', select: 'title description name profileImage username role ' });
-
-        return NextResponse.json(blogs, { status: 200 });
+        const pages = Math.ceil(total / limit)
+        return NextResponse.json({
+            page,
+            limit,
+            total,
+            pages,
+            hasNextPage: pages > page,
+            hasPrevPage: page > 1,
+            data: blogs
+        }, { status: 200 });
     } catch (error) {
         console.error({error});
         return NextResponse.json({ message: 'Internal server error' }, { status: 500 });

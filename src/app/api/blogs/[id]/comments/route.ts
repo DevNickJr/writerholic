@@ -4,12 +4,21 @@ import { Types } from 'mongoose';
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request, { params }: { params: { id: string }}) {
+    const searchParams = req.nextUrl.searchParams
+    const page = Number(searchParams.get('page') || 1)
+    const limit = Number(searchParams.get('limit') || 20) 
 
     try {
         const id = params.id
         await dbConnect();
+        // const total = await Comment.countDocuments()
+        // const pages = Math.ceil(total / limit)
 
-        const comments = await Comment.find({ blog: new Types.ObjectId(id) }).sort('-createdAt');
+        const comments = await Comment.find({ blog: new Types.ObjectId(id), approved: true }, null, {
+            skip: (page-1)*limit,
+            limit,
+            sort: '-createdAt'
+        });
 
         if (!comments) return NextResponse.json({ message: 'Comment does not exist' }, { status: 404 });
 
