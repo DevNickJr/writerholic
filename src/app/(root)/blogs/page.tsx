@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react";
+import React from "react";
 import { IBlog, IPaginatedResult } from "@/interfaces/schema";
 import BlogLayoutThree from "@/components/Blog/BlogLayoutThree";
 import { usePagination } from "@/hooks/usePagination";
@@ -10,15 +10,8 @@ import Image from "next/image";
 import LoadingImg from '@/assets/loading.svg'
 import EmptyImg from '@/assets/empty.svg'
 
-interface IProps {
-  params: {
-      id: string;
-  }
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
-const Blogs = ({ params: { id }, searchParams }: IProps) => {
-  console.log({ searchParams })
-  const [search, setSearch] = useState('')
+const Blogs = () => {
+  // const [search, setSearch] = useState('')
     const { limit, page, next, prev } = usePagination();
 
     const { data: blogs, isLoading } = useFetch<IPaginatedResult<IBlog>>({

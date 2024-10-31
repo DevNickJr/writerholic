@@ -1,7 +1,6 @@
 import { RxDashboard } from 'react-icons/rx';
 import { FiSettings } from 'react-icons/fi';
-import { MdOutlineArticle, MdOutlineComment, MdOutlineCategory, MdOutlinePersonPin } from 'react-icons/md';
-import { CgTrack } from 'react-icons/cg';
+import { MdOutlineArticle, MdOutlineComment, MdOutlineCategory } from 'react-icons/md';
 
 const navItems = [
   {

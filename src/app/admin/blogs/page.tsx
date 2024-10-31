@@ -26,7 +26,6 @@ const Blogs = () => {
            page, limit,
         },
         key: ["Blogs", page, limit],
-        requireAuth: true
     })
 
     const deleteBlogMutation = useMutate<string, unknown>(

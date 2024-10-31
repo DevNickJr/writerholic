@@ -5,7 +5,7 @@ import useFetch from '@/hooks/useFetch'
 import useMutate from '@/hooks/useMutation'
 import { IBlog, IPaginatedResult } from '@/interfaces/schema'
 import { apiGetBlog, apiUpdateBlog } from '@/services/BlogService'
-import React, { useState } from 'react'
+import React from 'react'
 import { toast } from 'react-toastify'
 
 interface IProps {
@@ -13,9 +13,9 @@ interface IProps {
 }
 
 const Actions = ({ blog }: IProps) => {
-    const [deleteBlogId, setDeleteBlogId] = useState('')
+    // const [deleteBlogId, setDeleteBlogId] = useState('')
 
-    const { data, refetch } = useFetch<IPaginatedResult<IBlog>>({
+    const { refetch } = useFetch<IPaginatedResult<IBlog>>({
         api: apiGetBlog,
         param: {
             id: blog._id
@@ -30,7 +30,7 @@ const Actions = ({ blog }: IProps) => {
         onSuccess: () => {
             toast.success("Blog Updated Successfully.")
             refetch()
-            setDeleteBlogId('')
+            // setDeleteBlogId('')
         },
         showErrorMessage: true,
         requireAuth: true,
