@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
-import { slug } from 'github-slugger';
-import { IBlog, ITopic } from '@/interfaces/schema';
+import { IBlog } from '@/interfaces/schema';
 import Tag from '@/components/Blog/Tag';
 import DarkTunImg from '@/assets/dark-tunnel.png';
 // import DarkBooksImg from '@/assets/dark-books.png';

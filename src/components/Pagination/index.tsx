@@ -1,7 +1,7 @@
 'use client'
 import { IPaginatedResult } from "@/interfaces/schema";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md"
 
 export interface IProps<T> {
@@ -10,7 +10,7 @@ export interface IProps<T> {
     prev: () => void; 
 }
 
-export function Pagination<T>({ data, next, prev }: IProps<T>) {
+export function Pagination<T>({ data }: IProps<T>) {
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
