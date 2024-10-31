@@ -1,3 +1,4 @@
+'use client'
 import { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
 import useCreateQueryString from "./useCreateQueryString";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";

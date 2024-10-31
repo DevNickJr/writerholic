@@ -44,7 +44,7 @@ interface DataTableProps<TData,> {
   }
   
 
-export default function BaseTable<TData, TValue>({
+export default function BaseTable<TData>({
 	data,
 	columns,
 	showPagination = true,
@@ -54,7 +54,7 @@ export default function BaseTable<TData, TValue>({
 	totalDocs,
 	sorting,
 	onSortingChange,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData>) {
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]) // filter
 	const [globalFilter, setGlobalFilter] = React.useState('')
 

@@ -3,7 +3,6 @@ import { format, parseISO } from "date-fns";
 import { IBlog, ITopic, IUser } from '@/interfaces/schema';
 import Image from 'next/image';
 import React from 'react'
-import './styles.module.css'
 import { MdChevronRight } from 'react-icons/md';
 import Share from '@/components/Share';
 import WriteComment from '@/components/WriteComment';

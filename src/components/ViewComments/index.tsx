@@ -34,7 +34,7 @@ const ViewComments = ({ id }: IProps) => {
                                 )
                             }
                             <div className='flex justify-center py-5'>
-                                <Button disabled={isFetchingNextPage || comments?.pages ? comments?.pages?.at(-1)?.length < 1 : false} onClick={() => fetchNextPage()} type='submit' className={`font-medium px-6 text-xs disabled:cursor-not-allowed`}>LOAD MORE COMMENTS</Button>
+                                <Button disabled={isFetchingNextPage  || ((comments.pages.at(-1)?.length || 0) < 1) || false} onClick={() => fetchNextPage()} type='submit' className={`font-medium px-6 text-xs disabled:cursor-not-allowed`}>LOAD MORE COMMENTS</Button>
                             </div>
                         </div>
                     </section>

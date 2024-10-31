@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { Suspense } from "react";
 import { IBlog, IPaginatedResult } from "@/interfaces/schema";
 import BlogLayoutThree from "@/components/Blog/BlogLayoutThree";
 import { usePagination } from "@/hooks/usePagination";
@@ -24,25 +24,13 @@ const Blogs = () => {
     })
   return (
     <section className="flex flex-col items-center justify-center w-full division section-bottom">
-      {/* <div className="flex justify-between w-full">
-        <h2 className="inline-block text-2xl font-bold capitalize w-fit md:text-4xl text-dark dark:text-light">
-            More Articles
-        </h2>
-        <Link
-          href="/categories/all"
-          className="inline-block text-base font-medium underline underline-offset-2 md:text-lg"
-        >
-          view all
-        </Link>
-      </div> */}
-
       {
         isLoading ? 
         <div className="mt-6 sm:mt-10 flex min-h-96 justify-center items-center">
           <Image src={LoadingImg} alt="Loading" height={300} width={300} className="" />
         </div>
         :
-        <>
+        <Suspense>
         {blogs?.data ?
           <>
             <div className="grid grid-cols-1 gap-16 mt-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -58,7 +46,7 @@ const Blogs = () => {
           </>
           : <Image src={EmptyImg} alt="NO data" height={300} width={300} className="" />
         }
-        </>
+        </Suspense>
       }
 
     </section>

@@ -63,8 +63,8 @@ export interface IComment {
 }
 
 export interface IPaginatedResult<T> {
-    hasNextPage: number;
-    hasPrevPage: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
     page: number;
     limit: number;
     total: number;

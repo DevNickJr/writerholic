@@ -1,9 +1,9 @@
 import dbConnect from '@/lib/dbConnection';
 import Comment from '@/models/CommentModel';
 import { Types } from 'mongoose';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: Request, { params }: { params: { id: string }}) {
+export async function GET(req: NextRequest, { params }: { params: { id: string }}) {
     const searchParams = req.nextUrl.searchParams
     const page = Number(searchParams.get('page') || 1)
     const limit = Number(searchParams.get('limit') || 20) 
