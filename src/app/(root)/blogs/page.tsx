@@ -9,12 +9,13 @@ import { Pagination } from "@/components/Pagination";
 import Image from "next/image";
 import LoadingImg from '@/assets/loading.svg'
 import EmptyImg from '@/assets/empty.svg'
+import Loader from "@/components/Loader";
 
 const Blogs = () => {
   // const [search, setSearch] = useState('')
     const { limit, page, next, prev } = usePagination();
 
-    const { data: blogs, isLoading } = useFetch<IPaginatedResult<IBlog>>({
+    const { data: blogs, isLoading, isPlaceholderData, isFetching } = useFetch<IPaginatedResult<IBlog>>({
         api: apiGetBlogs,
         param: {
             page,
@@ -24,8 +25,9 @@ const Blogs = () => {
     })
   return (
     <section className="flex flex-col items-center justify-center w-full division section-bottom">
+      {(isLoading || (isFetching  && isPlaceholderData)) && <Loader /> }
       {
-        isLoading ? 
+        (isLoading || !blogs?.data) ? 
         <div className="mt-6 sm:mt-10 flex min-h-96 justify-center items-center">
           <Image src={LoadingImg} alt="Loading" height={300} width={300} className="" />
         </div>

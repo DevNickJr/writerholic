@@ -13,7 +13,7 @@ interface IProps<T> {
 
 const useFetch = <T, >({api, param, key, select, enabled, ...rest}: IProps<T>) => {
 
-    const {data, error, isLoading, isFetching, refetch, fetchStatus} = useQuery({
+    const {data, error, isLoading, isFetching, refetch, fetchStatus, isPlaceholderData } = useQuery({
         queryKey: [...key],
         enabled: typeof enabled === 'undefined' ? true : enabled,
         queryFn: () => api(param),
@@ -22,7 +22,7 @@ const useFetch = <T, >({api, param, key, select, enabled, ...rest}: IProps<T>) =
         ...rest
     })
 
-    return {data, error, isLoading, isFetching, refetch, fetchStatus}
+    return {data, error, isLoading, isFetching, refetch, fetchStatus, isPlaceholderData}
 }
 
 export default useFetch

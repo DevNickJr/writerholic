@@ -29,6 +29,22 @@ export async function getBlogs() {
     }
 }
 
+export async function getFeaturedBlogs() {
+    try {
+        await dbConnect();
+        const blogs = await Blog.find({ isFeatured: true }, null, {
+            sort: '-featuredAt',
+            limit: 3,
+            populate: { path: 'topic author', select: 'title description name profileImage username role' }
+        });
+
+        return blogs
+    } catch (error) {
+        console.error({error});
+        throw error
+    }
+}
+
 
 // export async function getTopics() {
 //     noStore();
