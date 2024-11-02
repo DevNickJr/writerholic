@@ -56,7 +56,7 @@ const AdminComments = () => {
                                 <CommentCard
                                     key={index}
                                     data={el}
-                                    action={(verdict: boolean) => approveComment.mutate({ approved: !!verdict, id: el._id  })} 
+                                    action={(verdict: boolean) => approveComment.mutate({ approved: !!verdict, id: el._id || ''  })} 
                                 />
                                 ))
                             }

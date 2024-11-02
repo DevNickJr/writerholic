@@ -73,7 +73,6 @@ const AdminFeedbacks = () => {
                                 <FeedbackCard
                                     key={index}
                                     data={el}
-                                    action={(verdict: boolean) => approveFeedback.mutate({ approved: !!verdict, id: el._id  })} 
                                 />
                                 ))
                             }

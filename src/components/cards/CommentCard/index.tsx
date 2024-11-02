@@ -8,7 +8,7 @@ import {
   CardTitle,
   CardContent
 } from "@/components/ui/card"
-import { IComment } from "@/interfaces/schema"
+import { IComment, IBlog } from "@/interfaces/schema"
 
 interface IProps {
     data: IComment;
