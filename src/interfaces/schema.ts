@@ -62,6 +62,15 @@ export interface IComment {
     updatedAt?: string;
 }
 
+export interface IFeedback {
+    _id?: string;
+    name?: string;
+    email?: string
+    message?: string
+    createdAt?: string;
+    updatedAt?: string;
+}
+
 export interface IPaginatedResult<T> {
     hasNextPage: boolean;
     hasPrevPage: boolean;

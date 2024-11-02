@@ -10,6 +10,7 @@ interface Props {
 export default function AnimateProvider({ children }: Props) {
     React.useEffect(() => {
       AOS.init({
+        once: true,
       });
     }, []);
   
