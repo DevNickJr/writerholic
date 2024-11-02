@@ -21,7 +21,7 @@ const Tags = () => {
     const [deleteTagId, setDeleteTagId] = useState('')
     const [editTag, setEditTag] = useState<ITag>()
 
-    const { data: tags, refetch } = useFetch<ITag[]>({
+    const { data: tags, refetch, isLoading } = useFetch<ITag[]>({
         api: apiGetTags,
         param: {
             pagination: { page, limit },
@@ -46,7 +46,7 @@ const Tags = () => {
 
   return (
     <div>
-			  {deleteTagMutation.isPending && <Loader />}
+			  {(isLoading || deleteTagMutation.isPending) && <Loader />}
         <ConfirmDeleteDialog
           open={!!deleteTagId}
           close={() => setDeleteTagId('')}

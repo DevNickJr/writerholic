@@ -21,7 +21,7 @@ const Topics = () => {
     const [deleteTopicId, setDeleteTopicId] = useState('')
     const [editTopic, setEditTopic] = useState<ITopic>()
 
-    const { data: topics, refetch } = useFetch<ITopic[]>({
+    const { data: topics, refetch, isLoading } = useFetch<ITopic[]>({
         api: apiGetTopics,
         param: {
             pagination: { page, limit },
@@ -46,7 +46,7 @@ const Topics = () => {
 
   return (
     <div>
-			  {deleteTopicMutation.isPending && <Loader />}
+			  {(isLoading || deleteTopicMutation.isPending) && <Loader />}
         <ConfirmDeleteDialog
           open={!!deleteTopicId}
           close={() => setDeleteTopicId('')}
