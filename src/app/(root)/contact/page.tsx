@@ -63,11 +63,11 @@ const ContactUs = () => {
                         <div>
                             <h3 className="mb-3 text-lg font-bold text-primary font-argentinum">Email/Website Address</h3>
                             <div className="text-base text-[#6D6D6D] font-medium flex flex-col">
-                                <a href="http://www.writerholic.org" className="hover:text-primary">
-                                    http://www.writerholic.org
+                                <a href="http://www.lunasdiary.org" className="hover:text-primary">
+                                    http://www.lunasdiary.org
                                 </a>
-                                <a href="mailto:info@writerholic.org" className="hover:text-primary">
-                                    info@writerholic.org
+                                <a href="mailto:info@lunasdiary.org" className="hover:text-primary">
+                                    info@lunasdiary.org
                                 </a>
                             </div>
                         </div>

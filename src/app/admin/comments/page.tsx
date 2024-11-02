@@ -12,7 +12,7 @@ const AdminComments = () => {
 
     const { limit, page } = usePagination();
 
-    const { refetch } = useFetch<IPaginatedResult<IComment>>({
+    const { refetch, isLoading } = useFetch<IPaginatedResult<IComment>>({
         api: apiGetComments,
         param: {
            page, 
@@ -34,7 +34,7 @@ const AdminComments = () => {
     return (
         <Suspense>
             <div className="flex flex-col gap-y-5">
-                {approveComment.isPending && <Loader />}
+                {(isLoading || approveComment.isPending) && <Loader />}
                 <div id="search-and-filter" className="flex flex-col-reverse justify-between gap-3 md:flex-row">
                     {/* <div className="flex items-center w-full gap-3 md:flex-row">
                         <SearchBox

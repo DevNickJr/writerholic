@@ -53,7 +53,7 @@ const Login = () => {
                         <div>
                             <p className="md:text-4xl">
                                 <span className="font-bold text-primary">Welcome to </span>
-                                <span className="font-bold text-gray-800 font-argentinum">WriterHolic</span>
+                                <span className="font-bold text-gray-800 font-argentinum">LunasDiary</span>
                             </p>
                             <p className='hidden md:block'>Sign in to manage your blog posts, engage with your audience, and keep the content flowing.</p>
                         </div>

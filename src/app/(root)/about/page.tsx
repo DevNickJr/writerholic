@@ -14,31 +14,24 @@ export default function About() {
         <Image src={WriteImg1} alt="Bg" className="absolute top-0 left-0 w-full h-full" />
         <div className="flex flex-col gap-7 items-center text-center p-4 pt-12 max-w-[360px] md:max-w-[800px] mx-auto text-sm relative text-white">
           <h1 className="pointer-events-none z-10 text-center text-7xl font-bold">
-            About Us
+            Lunas Diary
           </h1>
           <h2 className="hidden text-2xl leading-relaxed md:block">
-           Lorem ipsum dolor sit sdsd, adipisicing elit.
+            Where Words Find Their Rhythm.
           </h2>
           <p className="text-lg">
-           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse dolore neque eaque rem fugiat nihil beatae, quo doloribus placeat voluptate qui, nostrum autem numquam voluptas. Ducimus est similique vero alias.
+            LunasDiary is a home for stories that resonate, inspire, and connect. Here, creativity knows no bounds, and each piece is crafted with thought and heart.
           </p>
           <div className="flex items-center gap-1.5">
-            <Link href={'/get-started'}>
-              <Button className="px-3">
-                Mayonis
-              </Button>
-            </Link>
-            <Link href={'/get-started'}>
-              <Button className="px-3">
-                Innovation
-              </Button>
-            </Link>
-            <Link href={'/get-started'}>
-              <Button className="px-3">
-                Benevolence
-              </Button>
-            </Link>
-
+            <Button className="px-3">
+              Imagination
+            </Button>
+            <Button className="px-3">
+              Insight
+            </Button>
+            <Button className="px-3">
+              Impact
+            </Button>
           </div>
           
         </div>
@@ -47,7 +40,7 @@ export default function About() {
         <div data-aos="fade-in" className="flex flex-col items-center max-w-3xl mx-auto mb-6 text-center md:mb-12">
           <h3 className="text-2xl md:text-3xl font-[624] mb-2 md:mb-4 text-primary">About Us</h3>
           <p className="text-lg text-primary">
-            Writerholic is a forward-thinking, multidisciplinary firm committed to delivering innovative solutions across multiple sectors, including marketing, real estate, consultancy, and education.
+            We believe in the power of words to inspire, connect, and uplift. Our blog is a space dedicated to thoughtful expression, where creativity meets purpose. Through each story and insight, we strive to bring forth innovation in writing, embrace kindness in all we share, and foster a sense of community that values thoughtful reflection. With a blend of imagination and sincerity, we hope to leave a meaningful impact on every reader.
           </p>
         </div>
         <div data-aos="fade-in" data-aos-offset="300" data-aos-easing="ease-in" className="division grid items-center grid-cols-1 gap-10 md:grid-cols-2">
@@ -56,19 +49,19 @@ export default function About() {
             <div className="flex flex-col items-start">
               <h4 className="mb-2 text-xl font-semibold">Mission Statement</h4>
               <p className="text-base md:text-lg">
-                Our mission is to offer creative, innovative, and sustainable solutions that drive business growth, human capacity development, and long-term success.
+                To inspire and engage readers through storytelling that celebrates creativity, reflection, and authenticity. LunasDiary strives to foster a community where ideas flourish, voices are valued, and every piece leaves a lasting impression
               </p>
             </div>
             <div className="flex flex-col items-start">
               <h4 className="mb-2 text-xl font-semibold">Our Vision</h4>
               <p className="text-base md:text-lg">
-                To be the leading catalyst for business transformation in Nigeria and beyond, empowering individuals and organizations to realize their full potential.
+              To become a trusted platform where words connect people across experiences and perspectives. Through dedication to quality content and a commitment to meaningful impact, LunasDiary aims to shape a world where stories ignite empathy, curiosity, and understanding
               </p>
             </div>
           </div>
           {/* Right side: Image */}
-          <div data-aos="fade-up-left" data-aos-offset="600" data-aos-easing="ease-in" className="flex items-center justify-center h-full max-h-screen shadow-lg overflow-hidden shadow-black">
-            <Image src={Innov} alt="About Writerholic Concept" className="w-full h-full rounded-sm" />
+          <div data-aos="fade-left" data-aos-offset="600" data-aos-easing="ease-in" className="flex items-center justify-center h-full max-h-screen shadow-lg overflow-hidden shadow-black">
+            <Image src={Innov} alt="About LunasDiary" className="w-full h-full rounded-sm" />
           </div>
     
         </div>
@@ -119,7 +112,7 @@ export default function About() {
               <div className="flex flex-col gap-4">
                 <h2 className='text-2xl font-bold text-primary'>Contact us for collaborations or advertisements</h2>
                 <p className='w-4/5 text-primary'>
-                  We love getting emails from our readers. Wether you just want to air your thoughts or you want to talk about a form  of collaboration. We love working with businesses and are happy to create partnerships of different kinds. Please email writerholic@gmail.com or contact us by via our contact us page
+                  We love getting emails from our readers. Wether you just want to air your thoughts or you want to talk about a form  of collaboration. We love working with businesses and are happy to create partnerships of different kinds. Please email lunasdiary@gmail.com or contact us by via our contact us page
                 </p>
               </div>
               <Link href={'/contact'}>
