@@ -1,6 +1,6 @@
 import { RxDashboard } from 'react-icons/rx';
 import { FiSettings } from 'react-icons/fi';
-import { MdOutlineArticle, MdOutlineComment, MdOutlineCategory } from 'react-icons/md';
+import { MdOutlineArticle, MdOutlineComment, MdOutlineCategory, MdPerson } from 'react-icons/md';
 
 const navItems = [
   {
@@ -36,6 +36,12 @@ const navItems = [
         title: "Comments",
         link: "/admin/comments",
         Icon: MdOutlineComment,
+      },
+      {
+        id: 6,
+        title: "Feedbacks",
+        link: "/admin/feedbacks",
+        Icon: MdPerson,
       }
     ],
   },
