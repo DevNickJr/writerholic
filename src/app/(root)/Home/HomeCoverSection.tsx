@@ -29,7 +29,7 @@ const HomeCoverSection = ({ blog }: { blog: IBlog }) => {
                 <Link href={'/blogs'} className='mt-6'>
                     <h1 className='text-lg font-bold capitalize sm:text-xl md:text-3xl lg:text-4xl'>
                         <span className='text-border-transition'>
-                            Welcome to Writerholic: A Journey Through Words
+                            Welcome to LunasDiary: A Journey Through Words
                             {/* {'Welcome to Writerholic: A Journey Through Words' || blog.title} */}
                         </span>
                     </h1>
