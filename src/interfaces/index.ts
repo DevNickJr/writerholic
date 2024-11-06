@@ -89,6 +89,12 @@ export interface IPaginate {
     limit: string
 }
 
+export interface IQuery {
+    page: string
+    limit: string
+    search: string
+}
+
 export interface IFeedback {
     email: string;
     name: string;

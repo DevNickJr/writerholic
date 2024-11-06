@@ -1,6 +1,6 @@
 import { IBlog } from "@/interfaces/schema"
 import BaseService from "./BaseService"
-import { IPaginate } from "@/interfaces"
+import { IQuery } from "@/interfaces"
 
 const servicePrefix = "/blogs"
 
@@ -9,8 +9,8 @@ export const apiAddBlog = (data: IBlog) => {
     return BaseService.post(`${servicePrefix}`, data)
 }
 
-export const apiGetBlogs = (params: IPaginate) => {
-    return BaseService.get(`${servicePrefix}?page=${params.page}&limit=${params.limit}`)
+export const apiGetBlogs = (params: IQuery) => {
+    return BaseService.get(`${servicePrefix}?page=${params.page}&limit=${params.limit}&search=${params.search}`)
 }
 
 export const apiGetBlog = ({ id }: { id: string }) => {

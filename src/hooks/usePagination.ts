@@ -51,10 +51,6 @@ export function usePagination(): IPaginate {
       }
     }, [page, limit])
 
-    useEffect(() => {
-      router.push(pathname)
-    }, [router, pathname])
-  
     return {
       limit: pageSize,
       onPaginationChange: setPagination,
