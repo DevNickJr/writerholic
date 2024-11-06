@@ -1,5 +1,4 @@
 "use client"
-import SearchBar from '@/components/SearchBar'
 import React, { useState } from 'react'
 import AddTagDialog from './AddTag.dialog'
 import { Button } from '@/components/ui/button'
@@ -13,6 +12,7 @@ import ConfirmDeleteDialog from '@/components/modals/ConfirmDeleteDialog'
 import Loader from '@/components/Loader'
 import EditTagDialog from './EditTag.dialog'
 import { TagCard } from '@/components/cards/TagCard'
+import Search from '@/components/Search'
 
 const Tags = () => {
     const [search, setSearch] = useState('')
@@ -58,7 +58,7 @@ const Tags = () => {
           refetch={refetch}
           data={editTag}
         />
-        <SearchBar value={search} onChange={(e: string) => setSearch(e)} />
+        <Search value={search} onChange={(e: string) => setSearch(e)} />
         <div className="flex flex-wrap justify-between gap-2 mb-5 md:flex-row md:items-center">
             <h2 className='text-3xl font-bold text-black/80'>Tags</h2>
             <AddTagDialog refetch={refetch}>

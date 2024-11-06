@@ -1,5 +1,4 @@
 "use client"
-import SearchBar from '@/components/SearchBar'
 import React, { useState } from 'react'
 import AddTopicDialog from './AddTopic.dialog'
 import { Button } from '@/components/ui/button'
@@ -13,6 +12,7 @@ import ConfirmDeleteDialog from '@/components/modals/ConfirmDeleteDialog'
 import Loader from '@/components/Loader'
 import EditTopicDialog from './EditTopic.dialog'
 import { TopicCard } from '@/components/cards/TopicCard'
+import Search from '@/components/Search'
 
 const Topics = () => {
     const [search, setSearch] = useState('')
@@ -58,7 +58,7 @@ const Topics = () => {
           refetch={refetch}
           data={editTopic}
         />
-        <SearchBar value={search} onChange={(e: string) => setSearch(e)} />
+        <Search value={search} onChange={(e: string) => setSearch(e)} />
         <div className="flex flex-wrap justify-between gap-2 mb-5 md:flex-row md:items-center">
             <h2 className='text-3xl font-bold text-black/80'>Topics</h2>
             <AddTopicDialog refetch={refetch}>
