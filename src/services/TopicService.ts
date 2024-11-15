@@ -1,5 +1,6 @@
 import { ITopic } from "@/interfaces/schema"
 import BaseService from "./BaseService"
+import { IQuery } from "@/interfaces"
 
 const servicePrefix = "/topics"
 
@@ -13,8 +14,8 @@ export const apiAddTopic = (data: ITopic) => {
     return BaseService.post(`${servicePrefix}`, data)
 }
 
-export const apiGetTopics = () => {
-    return BaseService.get(`${servicePrefix}`)
+export const apiGetTopics = (params: IQuery) => {
+    return BaseService.get(`${servicePrefix}?page=${params.page}&limit=${params.limit}&search=${params.search}`)
 }
 
 export const apiGetTopic = ({ id }: { id: string }) => {

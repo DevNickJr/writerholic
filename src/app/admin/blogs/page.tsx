@@ -20,12 +20,12 @@ const Blogs = () => {
     const [deleteBlogId, setDeleteBlogId] = useState('')
     const [, setEditBlog] = useState<IBlog>()
 
-    const { data: blogs, refetch, isLoading } = useFetch<IPaginatedResult<IBlog>>({
+    const { data: blogs, refetch, isLoading, isFetching, isPlaceholderData } = useFetch<IPaginatedResult<IBlog>>({
         api: apiGetBlogs,
         param: {
-           page, limit,
+            search, page, limit, 
         },
-        key: ["Blogs", page, limit],
+        key: ["Blogs", page, limit, search],
     })
 
     const deleteBlogMutation = useMutate<string, unknown>(
@@ -44,7 +44,7 @@ const Blogs = () => {
 
   return (
     <div>
-			  {(deleteBlogMutation.isPending || isLoading) && <Loader />}
+			  {(deleteBlogMutation.isPending || isLoading || (isFetching  && isPlaceholderData)) && <Loader />}
         <ConfirmDeleteDialog
           open={!!deleteBlogId}
           close={() => setDeleteBlogId('')}

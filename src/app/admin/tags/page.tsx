@@ -24,10 +24,10 @@ const Tags = () => {
     const { data: tags, refetch, isLoading } = useFetch<ITag[]>({
         api: apiGetTags,
         param: {
-            pagination: { page, limit },
+          search, page, limit, 
             // sort: { field, order },
         },
-        key: ["Tags", page, limit],
+        key: ["Tags", page, limit, search],
         requireAuth: true
     })
 

@@ -1,5 +1,6 @@
 import { ITag } from "@/interfaces/schema"
 import BaseService from "./BaseService"
+import { IQuery } from "@/interfaces"
 
 const servicePrefix = "/tags"
 
@@ -8,8 +9,8 @@ export const apiAddTag = (data: ITag) => {
     return BaseService.post(`${servicePrefix}`, data)
 }
 
-export const apiGetTags = () => {
-    return BaseService.get(`${servicePrefix}`)
+export const apiGetTags = (params: IQuery) => {
+    return BaseService.get(`${servicePrefix}?page=${params.page}&limit=${params.limit}&search=${params.search}`)
 }
 
 export const apiGetTag = ({ id }: { id: string }) => {

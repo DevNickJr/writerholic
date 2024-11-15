@@ -1,9 +1,9 @@
 import { RoleEnum } from '@/interfaces';
 import { apiVerifySession } from '@/lib/dal';
 import dbConnect from '@/lib/dbConnection';
-import { validateRequiredFields } from '@/lib/utils';
+import { resolveSearchQuery, validateRequiredFields } from '@/lib/utils';
 import Topic from '@/models/TopicModel';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 // ----------------------------------------------------------------------
 
@@ -29,12 +29,18 @@ export async function POST(req: Request) {
 }
 
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+    const searchParams = request.nextUrl.searchParams
+    const search = searchParams.get('search') ?? ''
+
+    const query = (search && search != 'undefined') ? { title: resolveSearchQuery({ search })} : {}
+
+    console.log({ query })
 
     try {
         await dbConnect();
 
-        const topics = await Topic.find();
+        const topics = await Topic.find(query);
 
         return NextResponse.json(topics, { status: 200 });
     } catch (error) {

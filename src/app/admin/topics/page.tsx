@@ -24,10 +24,10 @@ const Topics = () => {
     const { data: topics, refetch, isLoading } = useFetch<ITopic[]>({
         api: apiGetTopics,
         param: {
-            pagination: { page, limit },
+          search, page, limit, 
             // sort: { field, order },
         },
-        key: ["topics", page, limit],
+        key: ["topics", page, limit, search],
         requireAuth: true
     })
 
