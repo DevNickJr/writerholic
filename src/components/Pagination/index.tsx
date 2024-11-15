@@ -29,7 +29,7 @@ export function Pagination<T>({ data }: IProps<T>) {
    
 
     return (        
-        <div className="flex flex-col items-center justify-between gap-3 mt-8 text-sm font-medium md:gap-4 md:flex-row text-black/60">
+        <div className="flex flex-col items-center justify-center gap-3 mt-8 text-sm font-medium md:gap-4 md:flex-row text-black/60">
             <div className="flex items-center gap-3">
                 <button
                     className="flex items-center disabled:bg-gray-500 bg-primary text-white disabled:cursor-not-allowed cursor-pointer p-1 rounded-md pr-2.5"

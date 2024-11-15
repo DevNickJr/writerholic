@@ -12,18 +12,22 @@ import { BlogCard } from '@/components/cards/BlogCard'
 import Link from 'next/link'
 import { apiDeleteBlog, apiGetBlogs } from '@/services/BlogService'
 import Search from '@/components/Search'
+import EmptyImg from '@/assets/empty.svg'
+import { Pagination } from '@/components/Pagination'
+import Image from 'next/image'
+
 
 const Blogs = () => {
     const [search, setSearch] = useState('')
-    const { limit, page } = usePagination();
 
     const [deleteBlogId, setDeleteBlogId] = useState('')
     const [, setEditBlog] = useState<IBlog>()
+    const { limit, page, next, prev } = usePagination();
 
     const { data: blogs, refetch, isLoading, isFetching, isPlaceholderData } = useFetch<IPaginatedResult<IBlog>>({
         api: apiGetBlogs,
         param: {
-            search, page, limit, 
+            search, page, limit,
         },
         key: ["Blogs", page, limit, search],
     })
@@ -43,7 +47,7 @@ const Blogs = () => {
 
 
   return (
-    <div>
+    <div className='section-bottom'>
 			  {(deleteBlogMutation.isPending || isLoading || (isFetching  && isPlaceholderData)) && <Loader />}
         <ConfirmDeleteDialog
           open={!!deleteBlogId}
@@ -57,7 +61,7 @@ const Blogs = () => {
                 <Button>Add a New Blog</Button>
             </Link>
         </div>
-        <div className='flex flex-wrap gap-3 mt-6'>
+        {/* <div className='flex flex-wrap gap-3 mt-6'>
           {
             blogs?.data?.map((el, index) => (
               <BlogCard
@@ -67,6 +71,44 @@ const Blogs = () => {
                 onEdit={(data: IBlog) => setEditBlog(data)} 
               />
             ))
+          }
+        </div> */}
+        <div className='flex flex-wrap gap-3'>
+          {!!blogs?.total ?
+            <div className="flex flex-col gap-12">
+              {!!search && <div className="justify-center items-center flex flex-col w-full gap-3 text-center pb-3 border-b-2 text-lg md:text-2xl font-semibold capitalize">
+                Search Results For: {search}
+              </div> }
+              <div className='flex flex-wrap gap-3 mt-6'>
+                    {blogs?.data?.map((blog, index) => {
+                      return (
+                        <BlogCard
+                          key={index}
+                          data={blog}
+                          onDelete={(id) => setDeleteBlogId(id)} 
+                          onEdit={(data: IBlog) => setEditBlog(data)} 
+                        />    
+                      );
+                    })}
+              </div>
+              <Pagination data={blogs} prev={prev} next={next} />
+            </div>
+            : 
+            <div className="mt-6 sm:mt-10 min-h-96 justify-center items-center flex flex-col gap-3 text-center w-full">
+              {
+                !!search ? 
+                <>
+                  <Image src={EmptyImg} alt="NO data" height={300} width={300} className="" />
+                  <p className="text-sm md:text-lg">No matches were found for your search terms. Please try again with different keywords.</p>
+                </>
+                :
+                <>
+                  <Image src={EmptyImg} alt="NO data" height={300} width={300} className="" />
+                  <p className="text-sm md:text-lg">{isLoading ? "Loading Blogs ...." : "No blog has been posted"}</p>
+                </>
+                
+              }
+            </div>
           }
         </div>
     </div>
