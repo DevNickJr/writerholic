@@ -1,5 +1,5 @@
 import { RxDashboard } from 'react-icons/rx';
-import { FiSettings } from 'react-icons/fi';
+// import { FiSettings } from 'react-icons/fi';
 import { MdOutlineArticle, MdOutlineComment, MdOutlineCategory, MdPerson } from 'react-icons/md';
 
 const navItems = [
@@ -87,18 +87,18 @@ const navItems = [
   //     },
   //   ],
   // },
-  {
-    id: 4,
-    title: "",
-    navItems: [
-      {
-        id: 3,
-        title: "Settings",
-        link: "/admin/settings",
-        Icon: FiSettings,
-      },
-    ],
-  },
+  // {
+  //   id: 4,
+  //   title: "",
+  //   navItems: [
+  //     {
+  //       id: 3,
+  //       title: "Settings",
+  //       link: "/admin/settings",
+  //       Icon: FiSettings,
+  //     },
+  //   ],
+  // },
 ];
 
 export {

@@ -22,8 +22,12 @@ export const apiRegisterFace = (data: FormData) => {
     })
 }
 
-export const apiLogin =  (data: IUserLogin) => {
+export const apiLogin = (data: IUserLogin) => {
     return BaseService.post(`${servicePrefix}/login/`, data)
+}
+
+export const apiLogout = (data: unknown) => {
+    return BaseService.post(`${servicePrefix}/logout/`, data)
 }
 
 export const apiRefreshToken =  (data: { refresh: string }) => {
