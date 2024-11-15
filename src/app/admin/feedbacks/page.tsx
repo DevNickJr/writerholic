@@ -40,10 +40,10 @@ const AdminFeedbacks = () => {
 
     return (
         <Suspense>
-            <div className="flex flex-col gap-y-5">
+            <div className="flex flex-col gap-y-5 section-bottom">
                 {(isLoading || (isFetching  && isPlaceholderData) || approveFeedback.isPending) && <Loader /> }
                 <h2 className='text-3xl font-bold text-black/80'>New Feedbacks</h2>
-                <p className='text-sm md:text-base mb-5'>Decide what comment shows up on your posts</p>
+                <p className='text-sm md:text-base mb-5'>Feedbacks from users</p>
 {/*                 
                 <div id="search-and-filter" className="flex flex-wrap justify-between gap-3">
                     <div className='flex flex-wrap gap-3 mt-6='>

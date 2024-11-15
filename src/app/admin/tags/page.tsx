@@ -45,7 +45,7 @@ const Tags = () => {
     })
 
   return (
-    <div>
+    <div className='section-bottom'>
 			  {(isLoading || deleteTagMutation.isPending) && <Loader />}
         <ConfirmDeleteDialog
           open={!!deleteTagId}

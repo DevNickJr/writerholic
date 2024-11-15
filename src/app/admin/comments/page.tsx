@@ -37,7 +37,7 @@ const AdminComments = () => {
 
     return (
         <Suspense>
-            <div className="flex flex-col gap-y-5">
+            <div className="flex flex-col gap-y-5 section-bottom">
                 {(isLoading || (isFetching  && isPlaceholderData) || approveComment.isPending) && <Loader /> }
                 <h2 className='text-3xl font-bold text-black/80'>New Comments</h2>
                 <p className='text-sm md:text-base mb-5'>Decide what comment shows up on your posts</p>

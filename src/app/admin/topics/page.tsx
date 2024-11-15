@@ -45,7 +45,7 @@ const Topics = () => {
     })
 
   return (
-    <div>
+    <div className='section-bottom'>
 			  {(isLoading || deleteTopicMutation.isPending) && <Loader />}
         <ConfirmDeleteDialog
           open={!!deleteTopicId}
