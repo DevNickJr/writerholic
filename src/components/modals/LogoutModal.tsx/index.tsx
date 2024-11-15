@@ -11,6 +11,7 @@ interface IProps {
 }
 const LogoutModal = ({ isOpen, setIsOpen, logout }: IProps) => {
     
+    
     React.useEffect(() => {
         if (isOpen) {
           document.body.style.overflow = 'hidden'

@@ -7,6 +7,7 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
     const body = await req.json()
 
+
     try {
         await dbConnect();
         if (!body.password || (!body.email)) {
@@ -24,8 +25,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ message: 'Invalid credentials' }, { status: 400 });
         }
 
-        await createSession(user._id.toString(), user.role)
-
+        await createSession(user._id.toString(), user.role, body.remember)
 
         return NextResponse.json(user, { status: 200 })
     } catch (error) {

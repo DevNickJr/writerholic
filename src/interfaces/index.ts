@@ -19,6 +19,7 @@ export interface IUserObj {
 export interface IUserLogin {
     email: string
     password: string
+    remember: boolean
 }
 
 
