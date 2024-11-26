@@ -44,13 +44,13 @@ const AdminComments = () => {
                 {
                     (isLoading || !comments?.data) ? 
                     <div className="mt-6 sm:mt-10 flex min-h-96 justify-center items-center">
-                    <Image src={LoadingImg} alt="Loading" height={300} width={300} className="" />
+                        <Image src={LoadingImg} alt="Loading" height={300} width={300} className="" />
                     </div>
                     :
                     <>
                     {comments?.data ?
                     <>
-                        <div className="grid grid-cols-1 gap-16 mt-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
+                        <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-3">
                             {
                                 comments?.data?.map((el, index) => (
                                 <CommentCard

@@ -20,7 +20,7 @@ const RecentPosts = ({ blogs }: { blogs: IBlog[] }) => {
         </Link> */}
       </div>
 
-      <div className="grid grid-cols-1 gap-16 mt-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-16 mt-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3 mb-6 sm:mb-10">
         {blogs.slice(0, 6).map((blog, index) => {
           return (
             <article key={index} className="relative col-span-1 row-span-1">

@@ -13,6 +13,10 @@ export const apiGetTags = (params: IQuery) => {
     return BaseService.get(`${servicePrefix}?page=${params.page}&limit=${params.limit}&search=${params.search}`)
 }
 
+export const apiGetAllTags = () => {
+    return BaseService.get(`${servicePrefix}/all`)
+}
+
 export const apiGetTag = ({ id }: { id: string }) => {
     return BaseService.get(`${servicePrefix}/${id}`)
 }

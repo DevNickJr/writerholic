@@ -10,12 +10,11 @@ import ConfirmDeleteDialog from '@/components/modals/ConfirmDeleteDialog'
 import Loader from '@/components/Loader'
 import { BlogCard } from '@/components/cards/BlogCard'
 import Link from 'next/link'
-import { apiDeleteBlog, apiGetBlogs } from '@/services/BlogService'
+import { apiAdminGetBlogs, apiDeleteBlog } from '@/services/BlogService'
 import Search from '@/components/Search'
 import EmptyImg from '@/assets/empty.svg'
 import { Pagination } from '@/components/Pagination'
 import Image from 'next/image'
-
 
 const Blogs = () => {
     const [search, setSearch] = useState('')
@@ -25,7 +24,7 @@ const Blogs = () => {
     const { limit, page, next, prev } = usePagination();
 
     const { data: blogs, refetch, isLoading, isFetching, isPlaceholderData } = useFetch<IPaginatedResult<IBlog>>({
-        api: apiGetBlogs,
+        api: apiAdminGetBlogs,
         param: {
             search, page, limit,
         },

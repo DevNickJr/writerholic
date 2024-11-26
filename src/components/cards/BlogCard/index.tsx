@@ -3,6 +3,7 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import {
   Card,
+  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -10,6 +11,7 @@ import {
 } from "@/components/ui/card"
 import { IBlog } from "@/interfaces/schema"
 import Link from "next/link";
+import { StatusEnum } from "@/interfaces";
 
 interface IProps {
     data: IBlog;
@@ -24,6 +26,10 @@ export function BlogCard({ data, onDelete, onEdit }: IProps) {
         <CardTitle>{data.title}</CardTitle>
         <CardDescription>{data.excerpt}</CardDescription>
       </CardHeader>
+      <CardContent className="flex items-center gap-4 justify-between">
+        {/* <span className="text-sn">Status:</span> */}
+        <span className={`p-1.5 text-sm rounded-full font-medium ${data.status === StatusEnum.draft ? "bg-yellow-200 text-yellow-500" : data.status === StatusEnum.archived ? "bg-gray-200 text-gray-500" : 'bg-green-200 text-green-600' }`}>{data.status}</span>
+      </CardContent>
       <CardFooter className="flex justify-between">
         <div className="flex items-center gap-1.5">
           <Link href={`/admin/blogs/${data._id}`}>

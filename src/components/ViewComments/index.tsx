@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const ViewComments = ({ id }: IProps) => {
-    const pageSize = 2;
+    const pageSize = 5;
     const { data: comments, fetchNextPage, isFetchingNextPage } = useInfiniteFetch({ pageSize, id });
 
   return (
@@ -34,7 +34,10 @@ const ViewComments = ({ id }: IProps) => {
                                 )
                             }
                             <div className='flex justify-center py-5'>
+                                {
+                                    !!(comments.pages.at(-1)?.length || 0) &&
                                 <Button disabled={isFetchingNextPage  || ((comments.pages.at(-1)?.length || 0) < 1) || false} onClick={() => fetchNextPage()} type='submit' className={`font-medium px-6 text-xs disabled:cursor-not-allowed`}>LOAD MORE COMMENTS</Button>
+                                }
                             </div>
                         </div>
                     </section>

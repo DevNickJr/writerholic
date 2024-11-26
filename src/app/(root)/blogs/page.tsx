@@ -20,7 +20,6 @@ const Blogs = () => {
   const search = searchParams.has("search") ? searchParams.get('search') : ''
     const { limit, page, next, prev } = usePagination();
 
-
     const { data: blogs, isLoading, isPlaceholderData, isFetching } = useFetch<IPaginatedResult<IBlog>>({
         api: apiGetBlogs,
         param: {

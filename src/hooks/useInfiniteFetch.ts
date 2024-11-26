@@ -13,7 +13,7 @@ const useInfiniteFetch = (query: UserQuery) =>
 // as a best practice we should initialize to 1, 
 // so we data for the 
 // first page 
-    initialPageParam: 0,
+    initialPageParam: 1,
     queryFn: ({ pageParam = 1 }) =>
       axios
         .get(`/api/blogs/${query.id}/comments`, {

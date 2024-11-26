@@ -58,7 +58,7 @@ const SideNav = () => {
                     <div className={`flex flex-col items-center gap-3 mb-10`}>
                         <Image src={Profile} alt={""} className='w-20 cursor-pointer h-14' />
                         <div className="flex flex-col items-center gap-1.5">
-                            <h3 className={`text-xl font-bold`}>Cindy Student</h3>
+                            <h3 className={`text-xl font-bold`}>Miss Luna</h3>
                             <p className='text-xs text-black/70'>Admin Account</p>
                         </div>
                     </div>

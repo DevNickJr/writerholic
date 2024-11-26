@@ -60,7 +60,7 @@ const AdminFeedbacks = () => {
                 </div> */}
                 {
                     (isLoading || !feedbacks?.data) ? 
-                    <div className="mt-6 sm:mt-10 flex min-h-96 justify-center items-center">
+                    <div className="flex min-h-96 justify-center items-center">
                     <Image src={LoadingImg} alt="Loading" height={300} width={300} className="" />
                     </div>
                     :

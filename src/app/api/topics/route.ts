@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
 
     const query = (search && search != 'undefined') ? { title: resolveSearchQuery({ search })} : {}
 
-    console.log({ query })
+    // console.log({ query })
 
     try {
         await dbConnect();

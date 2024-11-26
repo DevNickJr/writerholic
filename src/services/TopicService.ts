@@ -18,6 +18,10 @@ export const apiGetTopics = (params: IQuery) => {
     return BaseService.get(`${servicePrefix}?page=${params.page}&limit=${params.limit}&search=${params.search}`)
 }
 
+export const apiGetAllTopics = () => {
+    return BaseService.get(`${servicePrefix}/all`)
+}
+
 export const apiGetTopic = ({ id }: { id: string }) => {
     return BaseService.get(`${servicePrefix}/${id}`)
 }

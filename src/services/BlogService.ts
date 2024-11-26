@@ -13,6 +13,10 @@ export const apiGetBlogs = (params: IQuery) => {
     return BaseService.get(`${servicePrefix}?page=${params.page}&limit=${params.limit}&search=${params.search}`)
 }
 
+export const apiAdminGetBlogs = (params: IQuery) => {
+    return BaseService.get(`${servicePrefix}/admin?page=${params.page}&limit=${params.limit}&search=${params.search}`)
+}
+
 export const apiGetBlog = ({ id }: { id: string }) => {
     return BaseService.get(`${servicePrefix}/${id}`)
 }

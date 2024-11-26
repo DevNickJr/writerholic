@@ -22,7 +22,7 @@ import { toast } from "react-toastify";
 import TinyEditor from "@/components/Editor";
 import useImage from "@/hooks/useImage";
 import { Editor } from "tinymce"
-import { apiGetTopics } from "@/services/TopicService";
+import { apiGetAllTopics } from "@/services/TopicService";
 import useFetch from "@/hooks/useFetch";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -58,6 +58,7 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
         }
         if (action.type === 'setAll') {
             if (typeof action.payload === 'object' && !Array.isArray(action.payload) && action.payload) {
+                console.log({action: action.payload})
                 return action.payload
             }
             return state
@@ -71,14 +72,9 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
     const router = useRouter()
 
     const ref = useRef<Editor | null>(null)
+    console.log({ data })
 
-    const { data: topics } = useFetch<ITopic[]>({
-        api: apiGetTopics,
-        key: ["topics", 'all'],
-        requireAuth: true
-    })
-
-
+    
     const { data: blog } = useFetch<IBlog>({
         api: apiGetBlog,
         key: ["Blog", params.id],
@@ -88,14 +84,25 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
         enabled: !!params.id
     })
 
-    console.log({data, blog})
-
-
     useEffect(() => {
         if (blog) {
             dispatch({ type: 'setAll', payload: blog })
         }
     }, [blog])
+
+
+    const { data: topics } = useFetch<ITopic[]>({
+        api: apiGetAllTopics,
+        key: ["topics", 'all'],
+        requireAuth: true
+    })
+    
+    useEffect(() => {
+        if (topics && blog?.topic) {
+            dispatch({ type: 'topic', payload: (blog?.topic as ITopic)._id || '' })
+        }
+    }, [topics, blog?.topic])
+
 
     const editBlogMutation = useMutate<IBlog, unknown>(
         apiUpdateBlog,
@@ -205,7 +212,7 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
                 <Label htmlFor="excerpt" className="">
                     Select Status
                 </Label>
-                <Select value={data.status} onValueChange={(value) => dispatch({ type: 'status', payload: value })}>
+                <Select value={data.status} onValueChange={(value) => !!value && dispatch({ type: 'status', payload: value })}>
                     <SelectTrigger className="">
                         <SelectValue placeholder="" />
                     </SelectTrigger>

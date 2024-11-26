@@ -1,3 +1,4 @@
+import { StatusEnum } from "@/interfaces";
 import dbConnect from "@/lib/dbConnection";
 import Blog from "@/models/BlogModel";
 
@@ -7,10 +8,13 @@ export async function getBlogs() {
     try {
         await dbConnect();
         const total = await Blog.countDocuments()
-        const blogs = await Blog.find({}, null, {
+        const blogs = await Blog.find({
+            status: StatusEnum.published,
+        }, null, {
             skip: (page-1)*limit,
             limit,
-            populate: { path: 'topic author', select: 'title description name profileImage username role' }
+            populate: { path: 'topic author', select: 'title description name profileImage username role' },
+            sort: '-createdAt'
         });
 
         const pages = Math.ceil(total / limit)
@@ -32,7 +36,7 @@ export async function getBlogs() {
 export async function getFeaturedBlogs() {
     try {
         await dbConnect();
-        const blogs = await Blog.find({ isFeatured: true }, null, {
+        const blogs = await Blog.find({ isFeatured: true, status: StatusEnum.published }, null, {
             sort: '-featuredAt',
             limit: 3,
             populate: { path: 'topic author', select: 'title description name profileImage username role' }

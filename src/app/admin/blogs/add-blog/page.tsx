@@ -22,7 +22,7 @@ import { toast } from "react-toastify";
 import TinyEditor from "@/components/Editor";
 import useImage from "@/hooks/useImage";
 import { Editor } from "tinymce"
-import { apiGetTopics } from "@/services/TopicService";
+import { apiGetAllTopics } from "@/services/TopicService";
 import useFetch from "@/hooks/useFetch";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -64,7 +64,7 @@ const AddBlog = () => {
     const ref = useRef<Editor | null>(null)
 
     const { data: topics } = useFetch<ITopic[]>({
-        api: apiGetTopics,
+        api: apiGetAllTopics,
         key: ["topics", 'all'],
         requireAuth: true
     })
