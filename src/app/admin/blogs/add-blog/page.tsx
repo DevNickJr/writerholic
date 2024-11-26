@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useMutate from "@/hooks/useMutation";
 import { IReducerAction, StatusEnum } from "@/interfaces";
-import { IBlog, ITopic } from "@/interfaces/schema";
+import { IBlog, ITag, ITopic } from "@/interfaces/schema";
 import { apiAddBlog } from "@/services/BlogService";
 import React, { useReducer, useRef } from "react";
 import type { FormEvent } from "react";
@@ -26,6 +26,8 @@ import { apiGetAllTopics } from "@/services/TopicService";
 import useFetch from "@/hooks/useFetch";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { apiGetAllTags } from "@/services/TagService";
+import { MdClose } from "react-icons/md";
 
 
 const initialState: IBlog = {
@@ -61,11 +63,18 @@ const AddBlog = () => {
     const { url: img, uploadImage: uploadImg, loading: uploadingImg } = useImage()
     const router = useRouter()
 
+    console.log({ data })
+
     const ref = useRef<Editor | null>(null)
 
     const { data: topics } = useFetch<ITopic[]>({
         api: apiGetAllTopics,
         key: ["topics", 'all'],
+        requireAuth: true
+    })
+    const { data: tags } = useFetch<ITag[]>({
+        api: apiGetAllTags,
+        key: ["tags", 'all'],
         requireAuth: true
     })
 
@@ -82,6 +91,17 @@ const AddBlog = () => {
           },
         }
     )
+
+    const addTag = (tag: string) => {
+        if (!tag) return
+        const tags = (data.tags || []).filter(tg => tg !== tag)
+        dispatch({ type: "tags", payload: [...tags, tag] })
+    }
+    const removeTag = (tag: string) => {
+        if (!tag) return
+        const tags = (data.tags || []).filter(tg => tg !== tag)
+        dispatch({ type: "tags", payload: [...tags] })
+    }
 
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -163,6 +183,36 @@ const AddBlog = () => {
                         </SelectGroup>
                     </SelectContent>
                 </Select>
+            </div>
+            <div className="flex flex-col gap-2">
+                <Label htmlFor="excerpt" className="">
+                    Select Tags
+                </Label>
+                <Select onValueChange={(value) => addTag(value)}>
+                    <SelectTrigger className="">
+                        <SelectValue placeholder="" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel>Select Tags</SelectLabel>
+                            {
+                                tags?.map(tag => (
+                                    <SelectItem key={tag._id} value={tag._id || ''}>{tag.title}</SelectItem>
+                                ))
+                            }
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
+                <div className="flex items-center gap-2 flex-wrap">
+                    {
+                        data?.tags?.map(tag => (
+                            <div key={tag} className="text-[10px] rounded-md p-1 bg-gray-50 text-gray-400 flex gap-1 items-center">
+                                {tags?.find(val => val._id === tag)?.title || ''}
+                                <MdClose onClick={() => removeTag(tag)} className="text-xs cursor-pointer" />
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
             <div className="flex flex-col gap-2">
                 <Label htmlFor="excerpt" className="">

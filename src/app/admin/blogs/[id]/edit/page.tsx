@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useMutate from "@/hooks/useMutation";
 import { IReducerAction, StatusEnum } from "@/interfaces";
-import { IBlog, ITopic } from "@/interfaces/schema";
+import { IBlog, ITag, ITopic } from "@/interfaces/schema";
 import { apiGetBlog, apiUpdateBlog } from "@/services/BlogService";
 import React, { useEffect, useReducer, useRef, useState } from "react";
 import type { FormEvent } from "react";
@@ -26,6 +26,8 @@ import { apiGetAllTopics } from "@/services/TopicService";
 import useFetch from "@/hooks/useFetch";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { apiGetAllTags } from "@/services/TagService";
+import { MdClose } from "react-icons/md";
 
 const initialState: IBlog = {
     title: '',
@@ -63,9 +65,9 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
             }
             return state
         }
-        else if (action.type === 'tags') {
-            return { ...state, [action.type]: [...(!!state.tags?.length ? state.tags : []), action.payload?.toString() || ''] }
-        }
+        // else if (action.type === 'tags') {
+        //     return { ...state, [action.type]: [...(!!state.tags?.length ? state.tags : []), action.payload?.toString() || ''] }
+        // }
         return { ...state, [action.type]: action.payload }
     }, initialState)
     const { url: img, uploadImage: uploadImg, loading: uploadingImg } = useImage()
@@ -103,6 +105,23 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
         }
     }, [topics, blog?.topic])
 
+    const { data: tags } = useFetch<ITag[]>({
+        api: apiGetAllTags,
+        key: ["tags", 'all'],
+        requireAuth: true
+    })
+
+
+    const addTag = (tag: string) => {
+        if (!tag) return
+        const tags = (data.tags || []).filter(tg => tg !== tag)
+        dispatch({ type: "tags", payload: [...tags, tag] })
+    }
+    const removeTag = (tag: string) => {
+        if (!tag) return
+        const tags = (data.tags || []).filter(tg => tg !== tag)
+        dispatch({ type: "tags", payload: [...tags] })
+    }
 
     const editBlogMutation = useMutate<IBlog, unknown>(
         apiUpdateBlog,
@@ -207,6 +226,36 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
                         </SelectGroup>
                     </SelectContent>
                 </Select>
+            </div>
+            <div className="flex flex-col gap-2">
+                <Label htmlFor="excerpt" className="">
+                    Select Tags
+                </Label>
+                <Select onValueChange={(value) => addTag(value)}>
+                    <SelectTrigger className="">
+                        <SelectValue placeholder="" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel>Select Tags</SelectLabel>
+                            {
+                                tags?.map(tag => (
+                                    <SelectItem key={tag._id} value={tag._id || ''}>{tag.title}</SelectItem>
+                                ))
+                            }
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
+                <div className="flex items-center gap-2 flex-wrap">
+                    {
+                        data?.tags?.map(tag => (
+                            <div key={tag} className="text-[10px] rounded-md p-1 bg-gray-50 text-gray-400 flex gap-1 items-center">
+                                {tags?.find(val => val._id === tag)?.title || ''}
+                                <MdClose onClick={() => removeTag(tag)} className="text-xs cursor-pointer" />
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
             <div className="flex flex-col gap-2">
                 <Label htmlFor="excerpt" className="">
