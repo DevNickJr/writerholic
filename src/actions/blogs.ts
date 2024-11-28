@@ -7,7 +7,7 @@ export async function getBlogs() {
     const limit = 20 
     try {
         await dbConnect();
-        const total = await Blog.countDocuments()
+        const total = await Blog.countDocuments({ status: StatusEnum.published })
         const blogs = await Blog.find({
             status: StatusEnum.published,
         }, null, {
