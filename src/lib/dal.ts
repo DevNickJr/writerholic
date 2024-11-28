@@ -10,11 +10,11 @@ export const verifySession = cache(async (role?: string) => {
   const session = await decrypt(cookie)
  
   if (!session?.userId) {
-    redirect('/login')
+    redirect('/auth/login')
   }
 
   if (!!role && role !== session.role) {
-    redirect('/login')
+    redirect('/auth/login')
   }
 
   return { isAuth: true, userId: session.userId, role: session.role }

@@ -9,7 +9,7 @@ export async function GET() {
     try {
         await dbConnect();
 
-        const tags = await Tag.find({});
+        const tags = await Tag.find();
 
         return NextResponse.json(tags, { status: 200 });
     } catch (error) {

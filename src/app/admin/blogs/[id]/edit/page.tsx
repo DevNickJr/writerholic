@@ -95,7 +95,7 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
 
     const { data: topics } = useFetch<ITopic[]>({
         api: apiGetAllTopics,
-        key: ["topics", 'all'],
+        key: ["all-topics", 'all'],
         requireAuth: true
     })
     
@@ -107,7 +107,7 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
 
     const { data: tags } = useFetch<ITag[]>({
         api: apiGetAllTags,
-        key: ["tags", 'all'],
+        key: ["all-tags", 'all'],
         requireAuth: true
     })
 
