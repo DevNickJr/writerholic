@@ -13,6 +13,9 @@ export async function PATCH(req: Request, { params }: { params: { id: string }})
 
         const session = await apiVerifySession()
         const blog = await Blog.findById(id);
+
+        if (!blog) return NextResponse.json({ message: 'Blog does not exist' }, { status: 404 });
+
         if (session.userId !== blog?.author.toString()) {
             return NextResponse.json({ message: 'You are not authorized to perform this action' }, { status: 403 });
         }
