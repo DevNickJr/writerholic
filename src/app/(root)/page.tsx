@@ -5,6 +5,9 @@ import RecentPosts from "./Home/RecentPosts";
 import { getBlogs } from "@/actions/blogs";
 import Image from "next/image";
 import EmptyImg from '@/assets/empty.svg'
+import { revalidatePath } from "next/cache";
+
+revalidatePath('/')
 
 export default async function Home() {
 
