@@ -1843,13 +1843,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.2.6":
-  version: 18.3.14
-  resolution: "@types/react@npm:18.3.14"
+"@types/react@npm:^19.0.1":
+  version: 19.0.1
+  resolution: "@types/react@npm:19.0.1"
   dependencies:
-    "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10c0/d925fbfcf084238b93d1a0b5406d4cf9aeb37c4a1191559aa4ee107c2e55cc15327989140f03eddda4d471f5b935d4673fd74a86f451860edea18eae48ca44f8
+  checksum: 10c0/25eb69114abb9a6d5fc4414ee584388275bbc9ac32976449cf58b95fe9880efe6b3f936c3842be9bed8c571546a9752e8d3e2095288381e9c809269f5f574f2e
   languageName: node
   linkType: hard
 
@@ -6672,7 +6671,7 @@ __metadata:
     "@types/aos": "npm:^3.0.7"
     "@types/bcrypt": "npm:^5.0.2"
     "@types/node": "npm:^20"
-    "@types/react": "npm:^18.2.6"
+    "@types/react": "npm:^19.0.1"
     "@types/react-dom": "npm:^18"
     "@types/uuid": "npm:^10.0.0"
     aos: "npm:^2.3.4"

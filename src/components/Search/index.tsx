@@ -11,12 +11,13 @@ interface IProps {
 const Search = ({ onChange }: IProps) => {
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [val, setVal] = useState('')
-    const timer = useRef<NodeJS.Timeout>()
+    const timer = useRef<NodeJS.Timeout>(null)
 
     useEffect(() => {
-        if (timer.current) {
-            clearTimeout(timer.current)
+        if (timer?.current) {
+            clearTimeout(timer?.current)
         }
+        if (!timer.current) return
         timer.current = setTimeout(() => {
             onChange(val)
             // reset()
@@ -24,8 +25,8 @@ const Search = ({ onChange }: IProps) => {
 
         // Clean-up function to clear the timer when component unmounts or when the effect re-runs
         return () => {
-            if (timer.current) {
-                clearTimeout(timer.current);
+            if (timer?.current) {
+                clearTimeout(timer?.current);
             }
         }
     }, [val, onChange])
