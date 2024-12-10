@@ -1,4 +1,4 @@
-import appConfig from '@/configs';
+"use client"
 import { format, parseISO } from "date-fns";
 import { IBlog, ITopic, IUser } from '@/interfaces/schema';
 import Image from 'next/image';
@@ -7,6 +7,9 @@ import { MdChevronRight } from 'react-icons/md';
 import Share from '@/components/Share';
 import WriteComment from '@/components/WriteComment';
 import ViewComments from '@/components/ViewComments'
+import useFetch from '@/hooks/useFetch';
+import { apiGetBlog } from '@/services/BlogService';
+
 
 interface IProps {
     params: {
@@ -14,10 +17,34 @@ interface IProps {
     }
 }
 
-const Blog = async ({ params: { id } }: IProps) => {
-    const blog: IBlog = await (await fetch(`${appConfig.apiPrefix}/blogs/${id}`)).json()
+const Blog = ({ params: { id } }: IProps) => {
+    // const blog: IBlog = await (await fetch(`${appConfig.apiPrefix}/blogs/${id}`)).json()
+    const { data: blog } = useFetch<IBlog>({
+        api: apiGetBlog,
+        param: {
+            id: id
+        },
+        key: ["Blogs", id],
+        enabled: !!id
+    })
+
+    // const { data: comments } = useFetch<IComment[]>({
+    //     api: apiGetBlogComments,
+    //     param: {
+    //         id: id
+    //     },
+    //     key: ["Blogs", id, 'comments'],
+    //     enabled: !!id
+    // })
+    
+
+    // const blog: IBlog = await (await fetch(`${appConfig.apiPrefix}/blogs/${id}`)).json()
+
+    // const comments: IComment[] = await (await fetch(`${appConfig.apiPrefix}/blogs/${id}/comments`)).json()
 
     if (!blog) return null
+
+
 
     return (
         <div className='blog'>
