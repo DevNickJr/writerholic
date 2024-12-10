@@ -8,7 +8,7 @@ import React from "react";
 const FeaturedPosts = async () => {
   const featuredBlogs: IBlog[] = await getFeaturedBlogs();
 
-  if (!featuredBlogs || !featuredBlogs.length) return null
+  if (!featuredBlogs || !featuredBlogs.length) return <></>
   return <section className="flex flex-col items-center justify-center w-full division section-top">
     <h2 className="inline-block w-full text-2xl font-bold capitalize md:text-4xl text-dark dark:text-light">Featured Posts</h2>
     <div className="grid grid-cols-2 grid-rows-2 gap-6 mt-6 sm:mt-10">
