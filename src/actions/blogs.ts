@@ -1,3 +1,4 @@
+'use server'
 import { StatusEnum } from "@/interfaces";
 import dbConnect from "@/lib/dbConnection";
 import Blog from "@/models/BlogModel";
