@@ -2,7 +2,7 @@ import { IBlog, IPaginatedResult } from "@/interfaces/schema";
 import FeaturedPosts from "./Home/FeaturedPosts";
 import HomeCoverSection from "./Home/HomeCoverSection";
 import RecentPosts from "./Home/RecentPosts";
-import { getBlogs } from "@/actions/blogs";
+import { getBlogs, getFeaturedBlogs } from "@/actions/blogs";
 import Image from "next/image";
 import EmptyImg from '@/assets/empty.svg'
 
@@ -12,6 +12,7 @@ export const fetchCache = 'force-no-store';
 export default async function Home() {
 
   const allBlogs: IPaginatedResult<IBlog> = await getBlogs();
+  const featuredBlogs: IBlog[] = await getFeaturedBlogs();
 
   // console.log({ allBlogs })
   
@@ -21,7 +22,7 @@ export default async function Home() {
         !!allBlogs && allBlogs.total > 0 ?
         <>
           <HomeCoverSection blog={allBlogs.data?.[0]} />
-          <FeaturedPosts />
+          <FeaturedPosts featuredBlogs={featuredBlogs} />
           <RecentPosts blogs={allBlogs.data} />
         </>
         :

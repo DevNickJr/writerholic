@@ -1,12 +1,14 @@
-import { getFeaturedBlogs } from "@/actions/blogs";
 import BlogLayoutOne from "@/components/Blog/BlogLayoutOne";
 import BlogLayoutTwo from "@/components/Blog/BlogLayoutTwo";
 import { IBlog } from "@/interfaces/schema";
 import React from "react";
 
 
-const FeaturedPosts = async () => {
-  const featuredBlogs: IBlog[] = await getFeaturedBlogs();
+const FeaturedPosts = ({
+  featuredBlogs
+}: {
+  featuredBlogs: IBlog[]
+}) => {
 
   if (!featuredBlogs || !featuredBlogs.length) return <></>
   return <section className="flex flex-col items-center justify-center w-full division section-top">
