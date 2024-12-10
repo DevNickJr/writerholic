@@ -8,8 +8,9 @@ export async function GET() {
 
     try {
         await dbConnect();
+        const query = {}
 
-        const tags = await Tag.find();
+        const tags = await Tag.find(query);
 
         return NextResponse.json(tags, { status: 200 });
     } catch (error) {

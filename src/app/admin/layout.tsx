@@ -3,6 +3,9 @@ import SideNav from '@/components/SideNav'
 import { verifySession } from '@/lib/dal'
 import React, { ReactNode } from 'react'
 
+export const dynamic = 'force-dynamic'
+export const fetchCache = 'force-no-store';
+
 const AdminLayout = async ({ children }: { children: ReactNode }) => {
   await verifySession()
 
