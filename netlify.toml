@@ -11,3 +11,13 @@
     Cache-Control = "no-store, no-cache, must-revalidate, proxy-revalidate"
     Pragma = "no-cache"
     Expires = "0"
+
+
+[[edge_functions]]
+  cache = "no-store"
+  path = "/hello"
+  function = "hello-world"
+
+
+
+

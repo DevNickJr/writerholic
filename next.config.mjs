@@ -15,6 +15,35 @@ const nextConfig = {
         },
       ],
     },
+    async headers() {
+      return [
+        {
+          source: "/api/:path*",
+          headers: [
+            {
+              key: "Access-Control-Allow-Origin",
+              value: "*", // Set your origin
+            },
+            {
+              key: "Access-Control-Allow-Methods",
+              value: "GET, POST, PUT, DELETE, OPTIONS",
+            },
+            {
+              key: "Access-Control-Allow-Headers",
+              value: "Content-Type, Authorization",
+            },
+            {
+              key: "Cache-Control",
+              value: "no-store",
+            },
+            {
+              key: "max-age",
+              value: 0,
+            },
+          ],
+        },
+      ];
+    },
 };
 
 export default nextConfig;
