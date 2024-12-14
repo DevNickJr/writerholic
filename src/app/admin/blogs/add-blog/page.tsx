@@ -16,7 +16,7 @@ import useMutate from "@/hooks/useMutation";
 import { IReducerAction, StatusEnum } from "@/interfaces";
 import { IBlog, ITag, ITopic } from "@/interfaces/schema";
 import { apiAddBlog } from "@/services/BlogService";
-import React, { useReducer, useRef } from "react";
+import React, { useReducer, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { toast } from "react-toastify";
 import TinyEditor from "@/components/Editor";
@@ -28,6 +28,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { apiGetAllTags } from "@/services/TagService";
 import { MdClose } from "react-icons/md";
+import { usePagination } from "@/hooks/usePagination";
 
 
 const initialState: IBlog = {
@@ -59,6 +60,9 @@ const AddBlog = () => {
         }
         return { ...state, [action.type]: action.payload }
     }, initialState)
+    const [search] = useState('')
+    const { limit, page } = usePagination();
+    
     const { url: img, uploadImage: uploadImg, loading: uploadingImg } = useImage()
     const router = useRouter()
 
@@ -66,12 +70,18 @@ const AddBlog = () => {
 
     const { data: topics } = useFetch<ITopic[]>({
         api: apiGetAllTopics,
-        key: ["all-topics", 'all'],
+        param: {
+            search, page, limit, 
+          },
+        key: ["all-topics", 'all', page, limit, search],
         requireAuth: true
     })
     const { data: tags } = useFetch<ITag[]>({
         api: apiGetAllTags,
-        key: ["all-tags", 'all'],
+        param: {
+            search, page, limit, 
+          },
+        key: ["all-tags", 'all', page, limit, search],
         requireAuth: true
     })
 

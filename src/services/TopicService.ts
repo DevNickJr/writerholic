@@ -19,7 +19,7 @@ export const apiGetTopics = (params: IQuery) => {
 }
 
 export const apiGetAllTopics = () => {
-    return BaseService.get(`${servicePrefix}/all`)
+    return BaseService.get(`${servicePrefix}/all?page=${Math.random()}&limit=${Math.random()}search=${Math.random()}`)
 }
 
 export const apiGetTopic = ({ id }: { id: string }) => {

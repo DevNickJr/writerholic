@@ -14,7 +14,7 @@ export const apiGetTags = (params: IQuery) => {
 }
 
 export const apiGetAllTags = () => {
-    return BaseService.get(`${servicePrefix}/all`)
+    return BaseService.get(`${servicePrefix}/all?page=${Math.random()}&limit=${Math.random()}search=${Math.random()}`)
 }
 
 export const apiGetTag = ({ id }: { id: string }) => {
