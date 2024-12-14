@@ -34,11 +34,7 @@ const nextConfig = {
             },
             {
               key: "Cache-Control",
-              value: "no-store",
-            },
-            {
-              key: "max-age",
-              value: 0,
+              value: "no-store, max-age=0",
             },
           ],
         },
