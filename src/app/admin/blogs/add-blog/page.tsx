@@ -50,7 +50,6 @@ const Status: Record<StatusEnum, string>= {
     Draft: 'draft',
     Published: 'publish',
     Archived: 'archive',
-
 }
 
 const AddBlog = () => {
@@ -62,8 +61,6 @@ const AddBlog = () => {
     }, initialState)
     const { url: img, uploadImage: uploadImg, loading: uploadingImg } = useImage()
     const router = useRouter()
-
-    console.log({ data })
 
     const ref = useRef<Editor | null>(null)
 
