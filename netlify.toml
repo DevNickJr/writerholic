@@ -13,11 +13,4 @@
     Expires = "0"
 
 
-[[edge_functions]]
-  cache = "no-store"
-  path = "/hello"
-  function = "hello-world"
-
-
-
 
