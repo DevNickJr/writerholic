@@ -15,9 +15,7 @@
 
 [[edge_functions]]
   cache = "no-store"
-  path = "/hello"
-  function = "hello-world"
-
+  path = "/api/*"
 
 
 
