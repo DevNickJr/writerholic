@@ -46,11 +46,14 @@ export interface IForgotPassword {
     redirect_url: string 
 }
 
+
 export interface IChangePassword { 
+    email: string, 
+    old_password: string,
     password: string,
     confirm_password: string, 
-    token: string, 
-    uidb64: 'MTI' 
+    // token: string, 
+    // uidb64: 'MTI' 
 }
 
 export interface IUserRegister {
