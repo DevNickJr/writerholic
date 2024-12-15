@@ -22,13 +22,13 @@ import { toast } from "react-toastify";
 import TinyEditor from "@/components/Editor";
 import useImage from "@/hooks/useImage";
 import { Editor } from "tinymce"
-import { apiGetAllTopics } from "@/services/TopicService";
+import { apiGetTopics } from "@/services/TopicService";
 import useFetch from "@/hooks/useFetch";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { apiGetAllTags } from "@/services/TagService";
 import { MdClose } from "react-icons/md";
 import { usePagination } from "@/hooks/usePagination";
+import { apiGetTags } from "@/services/TagService";
 
 
 const initialState: IBlog = {
@@ -69,7 +69,7 @@ const AddBlog = () => {
     const ref = useRef<Editor | null>(null)
 
     const { data: topics } = useFetch<ITopic[]>({
-        api: apiGetAllTopics,
+        api: apiGetTopics,
         param: {
             search, page, limit, 
           },
@@ -77,7 +77,7 @@ const AddBlog = () => {
         requireAuth: true
     })
     const { data: tags } = useFetch<ITag[]>({
-        api: apiGetAllTags,
+        api: apiGetTags,
         param: {
             search, page, limit, 
           },
